@@ -16,11 +16,11 @@ import frc.robot.subsystems.SUB_Wrist;
 public class CMD_IntakeShelf extends SequentialCommandGroup {
   public CMD_IntakeShelf(SUB_Elbow p_elbow, SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Wrist p_wrist) {
     addCommands(
-      new CMD_ElbowSetPosition(p_elbow, 90),//ground position
+      new CMD_ElbowSetPosition(p_elbow, 100),//ground position
       new CMD_WristFlip(p_wrist, p_elbow, 0),
-      new CMD_ElevatorSetPosition(p_elevator, 48),
-      new CMD_ElevatorCheck(p_elevator, 48),
-      new CMD_ElbowSetPosition(p_elbow, 135),
+      new CMD_ElevatorSetPosition(p_elevator, 56),
+      new CMD_ElevatorCheck(p_elevator, 56),
+      new CMD_ElbowSetPosition(p_elbow, 200),
       new CMD_IntakeOn(p_intake)
     );
   }

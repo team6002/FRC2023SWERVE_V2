@@ -26,11 +26,11 @@ public class CMD_WristFlip extends CommandBase {
 
   @Override
   public void execute() {
-    if(Math.abs(m_elbow.getElbowPosition() - 90) < 5){
+    if(Math.abs(m_elbow.getElbowPosition() - 100) < 5){
       if(m_side == 0){
-        m_wrist.setReference(0);
+        m_wrist.setReference(266);
       }else{
-        m_wrist.setReference(180);
+        m_wrist.setReference(90);
       }
     }
   }

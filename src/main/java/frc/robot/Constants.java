@@ -168,7 +168,7 @@ public final class Constants {
       public static final class IntakeConstants{
         public static final int kIntakeMotorCanID = 12;
         public static final double kIntakeForward = 500;
-        public static final double kIntakeForwardPower = 1;
+        public static final double kIntakeForwardPower = .1;
       }
 
       public static final class ElevatorConstants{
@@ -177,7 +177,7 @@ public final class Constants {
         public static final double kElevatorI = 0;
         public static final double kElevatorD = 0.;
         public static final double kElevatorF = 0.0;
-        public static final double kElevatorForward = .3;
+        public static final double kElevatorForward = .5;
         public static final double kElevatorOffset = -.487;
         public static final double kPowerLimit = .2;
       }

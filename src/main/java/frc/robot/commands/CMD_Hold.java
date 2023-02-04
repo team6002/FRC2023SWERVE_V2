@@ -20,9 +20,9 @@ public class CMD_Hold extends SequentialCommandGroup {
       new CMD_IntakeHold(p_intake),
       new CMD_ElevatorSetPosition(p_elevator, 0),
       new CMD_ElevatorCheck(p_elevator, 0),
-      new CMD_ElbowSetPosition(p_elbow, 90),
+      new CMD_ElbowSetPosition(p_elbow, 100),
       new CMD_WristFlip(p_wrist, p_elbow, 1),
-      new CMD_ElbowSetPosition(p_elbow, 0)
+      new CMD_ElbowSetPosition(p_elbow, 100)
     );
   }
 }

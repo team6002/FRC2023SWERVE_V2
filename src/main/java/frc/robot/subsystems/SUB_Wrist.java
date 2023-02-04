@@ -28,16 +28,40 @@ public class SUB_Wrist extends SubsystemBase {
       m_wristEncoder = m_wristMotor.getAbsoluteEncoder(Type.kDutyCycle);
       m_wristEncoder.setPositionConversionFactor(360);
       m_wristEncoder.setVelocityConversionFactor(6);
-      m_wristEncoder.setInverted(true);
+      m_wristEncoder.setInverted(false);
+      m_wristMotorPIDController.setP(.002,1);
+      m_wristMotorPIDController.setI(0,1);
+      m_wristMotorPIDController.setD(0,1);
+      m_wristMotorPIDController.setFF(0.0055,1);
+      m_wristMotorPIDController.setFeedbackDevice(m_wristEncoder);
+      m_wristMotorPIDController.setPositionPIDWrappingEnabled(false);
+      m_wristMotorPIDController.setOutputRange(-1, 1, 1);
+      m_wristMotorPIDController.setSmartMotionMaxVelocity(10, 1);
+      m_wristMotorPIDController.setSmartMotionMinOutputVelocity(-0, 1);
+      m_wristMotorPIDController.setSmartMotionMaxAccel(10, 1);
+      m_wristMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
+      m_wristMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);
     }
 
     public void setReference(double p_reference){
-      m_wristMotorPIDController.setReference(p_reference, ControlType.kPosition);
+      m_wristMotorPIDController.setReference(p_reference, ControlType.kSmartMotion,1);
       m_wantedPosition = p_reference;
     }
 
     public double getWristPosition(){
       return m_wristEncoder.getPosition();
+    }
+
+    public void setReverse(){
+      m_wristMotor.set(-1);
+    }
+
+    public void setOff(){
+      m_wristMotor.set(0);
+    }
+
+    public void setForward(){
+      m_wristMotor.set(1);
     }
 
     @Override
@@ -53,8 +77,37 @@ public class SUB_Wrist extends SubsystemBase {
       }
     }
 
+    double m_P, m_I, m_D, m_F;
     public void telemetry(){
       SmartDashboard.putNumber("wrist position", m_wristEncoder.getPosition());
       SmartDashboard.putNumber("wrist position(numeric)", getWristPosition());
+  
+      // m_P = SmartDashboard.getNumber("P", m_P);
+      // m_I = SmartDashboard.getNumber("I", m_I);
+      // m_D = SmartDashboard.getNumber("D", m_D);
+      // m_F = SmartDashboard.getNumber("F", m_F);
+      // m_wantedPosition = SmartDashboard.getNumber("wantedPosition", m_wantedPosition);
+  
+      // SmartDashboard.putNumber("P", m_P);
+      // SmartDashboard.putNumber("I", m_I);
+      // SmartDashboard.putNumber("D", m_D);
+      // SmartDashboard.putNumber("F", m_F);
+      // SmartDashboard.putNumber("wantedPosition", m_wantedPosition);
+     
+      // m_wristMotorPIDController.setP(m_P,1);
+      // m_wristMotorPIDController.setI(m_I,1);
+      // m_wristMotorPIDController.setD(m_D,1);
+      // m_wristMotorPIDController.setFF(m_F,1);
+      // m_wristMotorPIDController.setReference(m_wantedPosition, ControlType.kSmartMotion, 1);
+  
+      // SmartDashboard.putNumber("velocity", m_wristEncoder.getVelocity());
+      // SmartDashboard.putNumber("output", m_wristMotor.getAppliedOutput());
+      // SmartDashboard.putNumber("wantedspeed", m_wristMotor.get());
+      // SmartDashboard.putNumber("AccelStrat", m_wristMotorPIDController.getSmartMotionMaxAccel(1));
+      // SmartDashboard.putNumber("wrist P", m_wristMotorPIDController.getP());
+      // SmartDashboard.putNumber("wrist I", m_wristMotorPIDController.getI());
+      // SmartDashboard.putNumber("wrist D", m_wristMotorPIDController.getD());
+      // SmartDashboard.putNumber("wrist F", m_wristMotorPIDController.getFF());
+      // SmartDashboard.putNumber("wristSetpoint", m_wantedPosition);
     }
 }

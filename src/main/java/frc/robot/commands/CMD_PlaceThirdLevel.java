@@ -32,12 +32,13 @@ public class CMD_PlaceThirdLevel extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new CMD_ElbowSetPosition(m_elbow, 90),
-      new CMD_WristSetPosition(m_elbow, m_wrist, 0),
-      new CMD_ElevatorSetPosition(m_elevator, 48),
-      new CMD_ElevatorCheck(m_elevator, 48),
-      new CMD_ElbowSetPosition(p_elbow, 0),
+      new CMD_WristSetPosition(m_elbow, m_wrist, 270),
+      new CMD_ElevatorSetPosition(m_elevator, 56),
+      new CMD_ElevatorCheck(m_elevator, 56),
+      new CMD_ElbowSetPosition(p_elbow, 200),
       new CMD_IntakeDrop(m_intake, m_finiteStateMachine),
-      new WaitCommand(1)
+      new WaitCommand(1),
+      new CMD_Stow(m_elevator, m_intake, m_elbow, m_wrist)
     );
   }
 }

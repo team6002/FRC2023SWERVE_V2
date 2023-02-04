@@ -18,11 +18,10 @@ public class CMD_Stow extends SequentialCommandGroup {
 
     addCommands(
       new CMD_IntakeOff(m_intake),
-      new CMD_ElbowSetPosition(p_elbow, 90),
-      new CMD_WristFlip(p_wrist, p_elbow, 1),
+      new CMD_ElbowSetPosition(p_elbow, 100),
+      new CMD_WristFlip(p_wrist, p_elbow, 0),
       new CMD_ElevatorSetPosition(p_elevator, 0),
       new CMD_ElevatorCheck(p_elevator, 0),
-      new CMD_ElbowSetPosition(p_elbow, 135)
-    );
+      new CMD_ElbowSetPosition(p_elbow, 130));
   }
 }

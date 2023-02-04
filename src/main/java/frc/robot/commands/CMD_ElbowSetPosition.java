@@ -32,6 +32,6 @@ public class CMD_ElbowSetPosition extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return m_elbow.checkPosition() && Math.abs(m_elbow.getElbowPosition() - m_elbow.getElbowWantedPosition()) < m_tolerance;//checks to see if elbow is at the wanted position
+    return Math.abs(m_elbow.getElbowPosition() - m_elbow.getElbowWantedPosition()) < m_tolerance;//checks to see if elbow is at the wanted position
   }
 }
