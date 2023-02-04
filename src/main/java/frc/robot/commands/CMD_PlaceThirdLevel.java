@@ -6,6 +6,9 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants.ElbowConstants;
+import frc.robot.Constants.ElevatorConstants;
+import frc.robot.Constants.WristConstants;
 import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Elevator;
 import frc.robot.subsystems.SUB_FiniteStateMachine;
@@ -31,11 +34,11 @@ public class CMD_PlaceThirdLevel extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new CMD_ElbowSetPosition(m_elbow, 90),
-      new CMD_WristSetPosition(m_elbow, m_wrist, 270),
-      new CMD_ElevatorSetPosition(m_elevator, 56),
-      new CMD_ElevatorCheck(m_elevator, 56),
-      new CMD_ElbowSetPosition(p_elbow, 200),
+      new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp),
+      new CMD_WristSetPosition(m_elbow, m_wrist, WristConstants.kWristShelf),
+      new CMD_ElevatorSetPosition(m_elevator, ElevatorConstants.kElevatorThirdLevel),
+      new CMD_ElevatorCheck(m_elevator, ElevatorConstants.kElevatorThirdLevel),
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowForwards),
       new CMD_IntakeDrop(m_intake, m_finiteStateMachine),
       new WaitCommand(1),
       new CMD_Stow(m_elevator, m_intake, m_elbow, m_wrist)

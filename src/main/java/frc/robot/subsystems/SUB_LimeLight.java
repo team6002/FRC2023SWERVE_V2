@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -43,16 +44,29 @@ public class SUB_LimeLight extends SubsystemBase {
 
   @Override
   public void periodic() {
-  SmartDashboard.putNumber("DO YOU SEE ANYTHING ", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0));
-  botpose =  NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getDoubleArray(dv);
-  if(m_finiteStateMachine.getState() == RobotState.SCORING){  
-    if(hasTarget()){
-      m_blinkin.setHasTarget();
+    botpose =  NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getDoubleArray(dv);
+    if(m_finiteStateMachine.getState() == RobotState.SCORING){  
+      if(hasTarget()){
+        m_blinkin.setHasTarget();
+      }
+      else{
+        m_blinkin.setHasNoTarget();
+      }
     }
-    else{
-      m_blinkin.setHasNoTarget();
-    }
+    telemetry();
   }
+
+  public void telemetry(){
+    SmartDashboard.putNumber("DO YOU SEE ANYTHING ", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0));
+    if(hasTarget()){
+      SmartDashboard.putNumber("target ID", getTargetID());
+      SmartDashboard.putNumber("target x", getTargetX());
+      SmartDashboard.putNumber("target Y", getTargetY());
+      SmartDashboard.putNumber("target Z", getTargetZ());
+      SmartDashboard.putNumber("target pitch", getTargetPitch());
+      SmartDashboard.putNumber("target yaw", getTargetYaw());
+      SmartDashboard.putNumberArray("botpose", botpose);
+    }
   }
 
   @Override
@@ -72,15 +86,15 @@ public class SUB_LimeLight extends SubsystemBase {
   }
 
   public double getTargetX(){
-    return botpose[0];
+    return Units.metersToInches(botpose[0]);
   }
 
   public double getTargetY(){
-    return botpose[1];
+    return Units.metersToInches( botpose[1]);
   }
 
   public double getTargetZ(){
-    return botpose[2];
+    return Units.metersToInches(-botpose[2]);
   }
 
   public double getTargetPitch(){

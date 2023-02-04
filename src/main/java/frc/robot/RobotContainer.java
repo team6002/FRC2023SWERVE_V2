@@ -48,13 +48,7 @@ public class RobotContainer {
   boolean pressed = false;
   private void configureButtonBindings() {
 
-
-    // m_driverControllerTrigger.b().onTrue(new SequentialCommandGroup(//cancel
-    //  new CMD_ElevatorSetOff(m_elevator),
-    //  new CMD_IntakeOff(m_intake)
-    // ));
-
-    // m_driverControllerTrigger.a().onTrue(new CMD_ToggleIntakeState(m_intake));
+    m_driverControllerTrigger.a().onTrue(new CMD_ToggleIntakeState(m_intake));
 
     m_driverControllerTrigger.leftTrigger().onTrue(new CMD_IntakeShelf(m_elbow, m_elevator, m_intake, m_wrist))
     .onFalse(new CMD_Hold(m_intake, m_elbow, m_elevator, m_wrist));
@@ -65,31 +59,8 @@ public class RobotContainer {
     m_driverControllerTrigger.leftBumper().onTrue(new CMD_PlaceThirdLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
    
     m_driverControllerTrigger.rightBumper().onTrue(new CMD_PlaceSecondLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
-   
-    // m_driverControllerTrigger.leftTrigger().whileTrue(new InstantCommand(() -> m_elevator.setElevatorOn())).
-    // onFalse(new InstantCommand(() -> m_elevator.setElevatorOff()));
 
-    // m_driverControllerTrigger.rightTrigger().whileTrue(new InstantCommand(() -> m_elevator.setElevatorReverse())).
-    // onFalse(new InstantCommand(() -> m_elevator.setElevatorOff()));
-
-    // m_driverControllerTrigger.leftBumper().whileTrue(new InstantCommand(() -> m_intake.setIntakeForward())).
-    // onFalse(new InstantCommand(() -> m_intake.Off()));
-
-    // m_driverControllerTrigger.rightBumper().whileTrue(new InstantCommand(() -> m_intake.setIntakeReverse())).
-    // onFalse(new InstantCommand(() -> m_intake.Off()));
-
-    // m_driverControllerTrigger.a().whileTrue(new InstantCommand(() -> m_wrist.setForward())).
-    // onFalse(new InstantCommand(() -> m_wrist.setOff()));
-
-    // m_driverControllerTrigger.b().whileTrue(new InstantCommand(() -> m_wrist.setReverse())).
-    // onFalse(new InstantCommand(() -> m_wrist.setOff()));
-
-    // m_driverControllerTrigger.x().whileTrue(new InstantCommand(() -> m_elbow.setReverse())).
-    // onFalse(new InstantCommand(() -> m_elbow.setOff()));
-
-    // m_driverControllerTrigger.y().whileTrue(new InstantCommand(() -> m_elbow.setForward())).
-    // onFalse(new InstantCommand(() -> m_elbow.setOff()));
-
+    m_driverControllerTrigger.b().onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));
   }
 
     public void zeroGyroHeading() {

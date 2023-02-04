@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ElbowConstants;
+import frc.robot.Constants.WristConstants;
 import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Wrist;
 
@@ -26,11 +28,11 @@ public class CMD_WristFlip extends CommandBase {
 
   @Override
   public void execute() {
-    if(Math.abs(m_elbow.getElbowPosition() - 100) < 5){
+    if(Math.abs(m_elbow.getElbowPosition() - ElbowConstants.kElbowUp) < 5){
       if(m_side == 0){
-        m_wrist.setReference(266);
+        m_wrist.setReference(WristConstants.kWristShelf);
       }else{
-        m_wrist.setReference(90);
+        m_wrist.setReference(WristConstants.kWristGround);
       }
     }
   }

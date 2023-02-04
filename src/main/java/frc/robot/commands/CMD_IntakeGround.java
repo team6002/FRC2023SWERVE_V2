@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.ElbowConstants;
+import frc.robot.Constants.ElevatorConstants;
 import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Elevator;
 import frc.robot.subsystems.SUB_Intake;
@@ -16,11 +18,11 @@ import frc.robot.subsystems.SUB_Wrist;
 public class CMD_IntakeGround extends SequentialCommandGroup {
   public CMD_IntakeGround(SUB_Elbow p_elbow, SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Wrist p_wrist) {
     addCommands(
-      new CMD_ElbowSetPosition(p_elbow, 100),//ground position
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),//ground position
       new CMD_WristFlip(p_wrist, p_elbow, 1),
-      new CMD_ElevatorSetPosition(p_elevator, 0),
-      new CMD_ElevatorCheck(p_elevator, 0),
-      new CMD_ElbowSetPosition(p_elbow, 30),
+      new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorHome),
+      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowBackwards),
       new CMD_IntakeOn(p_intake)
     );
   }

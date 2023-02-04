@@ -29,10 +29,10 @@ public class SUB_Elbow extends SubsystemBase {
         m_elbowEncoder.setPositionConversionFactor(360);
         m_elbowEncoder.setVelocityConversionFactor(6);
         m_elbowEncoder.setInverted(true);
-        m_elbowMotorPIDController.setP(0.002,1);
+        m_elbowMotorPIDController.setP(0.003,1);
         m_elbowMotorPIDController.setI(0,1);
         m_elbowMotorPIDController.setD(0,1);
-        m_elbowMotorPIDController.setFF(0.004,1);
+        m_elbowMotorPIDController.setFF(0.009,1);
         m_elbowMotorPIDController.setFeedbackDevice(m_elbowEncoder);
         m_elbowMotor.setIdleMode(IdleMode.kBrake);
         m_elbowMotorPIDController.setPositionPIDWrappingEnabled(false);
@@ -82,10 +82,10 @@ public class SUB_Elbow extends SubsystemBase {
         telemetry();
     }
 
-    // double m_P = 0;//elbowConstants.kelbowP;
-    // double m_I = 0;//elbowConstants.kelbowI;
-    // double m_D = 0;//elbowConstants.kelbowD;
-    // double m_F = 0;//elbowConstants.kelbowF;
+    double m_P = 0;//elbowConstants.kelbowP;
+    double m_I = 0;//elbowConstants.kelbowI;
+    double m_D = 0;//elbowConstants.kelbowD;
+    double m_F = 0;//elbowConstants.kelbowF;
     
     public void telemetry(){
 

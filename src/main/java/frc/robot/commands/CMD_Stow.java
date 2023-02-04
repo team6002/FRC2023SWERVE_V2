@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.ElbowConstants;
+import frc.robot.Constants.ElevatorConstants;
 import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Elevator;
 import frc.robot.subsystems.SUB_Intake;
@@ -18,10 +20,10 @@ public class CMD_Stow extends SequentialCommandGroup {
 
     addCommands(
       new CMD_IntakeOff(m_intake),
-      new CMD_ElbowSetPosition(p_elbow, 100),
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
       new CMD_WristFlip(p_wrist, p_elbow, 0),
-      new CMD_ElevatorSetPosition(p_elevator, 0),
-      new CMD_ElevatorCheck(p_elevator, 0),
-      new CMD_ElbowSetPosition(p_elbow, 130));
+      new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorHome),
+      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp));
   }
 }

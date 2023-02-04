@@ -32,10 +32,10 @@ public class SUB_Elevator extends SubsystemBase {
       // m_elevatorMotorPIDController.setI(elevatorConstants.kelevatorI);
       // m_elevatorMotorPIDController.setD(elevatorConstants.kelevatorD);
       // m_elevatorMotorPIDController.setFF(elevatorConstants.kelevatorF);
-      m_elevatorMotorPIDController.setP(0.03,1);
+      m_elevatorMotorPIDController.setP(0.04,1);
       m_elevatorMotorPIDController.setI(0,1);
       m_elevatorMotorPIDController.setD(0,1);
-      m_elevatorMotorPIDController.setFF(0.01,1);
+      m_elevatorMotorPIDController.setFF(0.04,1);
       m_elevatorMotorPIDController.setFeedbackDevice(m_elevatorEncoder);
       m_elevatorMotor.setIdleMode(IdleMode.kCoast);
       m_elevatorMotorPIDController.setPositionPIDWrappingEnabled(false);
@@ -63,12 +63,12 @@ public class SUB_Elevator extends SubsystemBase {
     //   m_elevatorMotorPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
     // }
     public void setPosition(double p_reference){
-      m_wantedPosition = p_reference;
-      if(p_reference > 100){
+      // m_wantedPosition = p_reference;
+      // if(p_reference > 100){
         m_elevatorMotorPIDController.setReference(p_reference, CANSparkMax.ControlType.kSmartMotion,1);
-      }else{
-        m_elevatorMotorPIDController.setReference(p_reference, CANSparkMax.ControlType.kSmartMotion,2);
-      }
+      // }else{
+      //   m_elevatorMotorPIDController.setReference(p_reference, CANSparkMax.ControlType.kSmartMotion,2);
+      // }
     } 
     public double getPosition(){
       return m_elevatorEncoder.getPosition();
@@ -93,13 +93,13 @@ public class SUB_Elevator extends SubsystemBase {
     telemetry();
   }
   
-  double m_P = 0;//elevatorConstants.kelevatorP;
-  double m_I = 0;//elevatorConstants.kelevatorI;
-  double m_D = 0;//elevatorConstants.kelevatorD;
-  double m_F = 0;//elevatorConstants.kelevatorF;
+  // double m_P = 0;//elevatorConstants.kelevatorP;
+  // double m_I = 0;//elevatorConstants.kelevatorI;
+  // double m_D = 0;//elevatorConstants.kelevatorD;
+  // double m_F = 0;//elevatorConstants.kelevatorF;
   public void telemetry(){
-    SmartDashboard.putNumber("elevator Position", m_elevatorEncoder.getPosition());
-    SmartDashboard.putNumber("elevator Position (numeric)", m_elevatorEncoder.getPosition());
+    // SmartDashboard.putNumber("elevator Position", m_elevatorEncoder.getPosition());
+    // SmartDashboard.putNumber("elevator Position (numeric)", m_elevatorEncoder.getPosition());
 
     // m_P = SmartDashboard.getNumber("P", m_P);
     // m_I = SmartDashboard.getNumber("I", m_I);

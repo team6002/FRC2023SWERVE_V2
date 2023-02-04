@@ -29,10 +29,11 @@ public class SUB_Wrist extends SubsystemBase {
       m_wristEncoder.setPositionConversionFactor(360);
       m_wristEncoder.setVelocityConversionFactor(6);
       m_wristEncoder.setInverted(false);
-      m_wristMotorPIDController.setP(.002,1);
+      // m_wristMotor.setSoftLimit(null, 80);
+      m_wristMotorPIDController.setP(0.00,1);
       m_wristMotorPIDController.setI(0,1);
       m_wristMotorPIDController.setD(0,1);
-      m_wristMotorPIDController.setFF(0.0055,1);
+      m_wristMotorPIDController.setFF(0.05,1);
       m_wristMotorPIDController.setFeedbackDevice(m_wristEncoder);
       m_wristMotorPIDController.setPositionPIDWrappingEnabled(false);
       m_wristMotorPIDController.setOutputRange(-1, 1, 1);

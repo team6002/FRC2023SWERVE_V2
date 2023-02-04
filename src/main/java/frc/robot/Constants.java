@@ -80,20 +80,20 @@ public final class Constants {
         public static int kNavXAdjustment = 0;
 
         //motor assignments
-        public static final int kFrontLeftTurningID = 13;    
         public static final int kFrontLeftDriveID = 14;
+        public static final int kFrontRightDriveID = 5;
         public static final int kBackLeftTurningID = 16;
-        public static final int kBackLeftDriveID = 15;
+        public static final int kBackRightDriveID = 4;
 
         public static final boolean kFrontLeftDriveMotorInverted = false;
         public static final boolean kFrontRightDriveMotorInverted = false;
         public static final boolean kBackLeftDriveMotorInverted = false;
         public static final boolean kBackRightDriveMotorInverted = false;
-        
+
+        public static final int kFrontLeftTurningID = 13;            
         public static final int kFrontRightTurningID = 6;
-        public static final int kFrontRightDriveID = 5;
         public static final int kBackRightTurningID = 3;
-        public static final int kBackRightDriveID = 4;
+        public static final int kBackLeftDriveID = 15;
 
         public static final int kFrontLeftDriveAnalogPort = 6;
         public static final int kFrontRightDriveAnalogPort = 7;
@@ -168,7 +168,7 @@ public final class Constants {
       public static final class IntakeConstants{
         public static final int kIntakeMotorCanID = 12;
         public static final double kIntakeForward = 500;
-        public static final double kIntakeForwardPower = .1;
+        public static final double kIntakeForwardPower = 1;
       }
 
       public static final class ElevatorConstants{
@@ -180,13 +180,25 @@ public final class Constants {
         public static final double kElevatorForward = .5;
         public static final double kElevatorOffset = -.487;
         public static final double kPowerLimit = .2;
+        public static final double kElevatorMax = 56;
+        public static final double kElevatorShelf = 53;
+        public static final double kElevatorThirdLevel = 56;
+        public static final double kElevatorSecondLevel = 33;  
+        public static final double kElevatorHome = 0;
       }
 
       public static final class ElbowConstants{
         public static final int kElbowMotorCanID = 11;
+        public static final double kElbowUp = 180;// about 90 degrees up
+        public static final double kElbowForwards = 260;// stright forwards
+        public static final double kElbowBackwards = 103;// straigjt back
+        public static final double kElbowStowShelf = 180;// for when we want to contiously pick up from shelf
+        public static final double kElbowStowGround = 135;// for when we want to continously pick up from ground
       }
 
       public static final class WristConstants{
         public static final int kWristMotorCanID = 10;
+        public static final double kWristGround = 90;//back
+        public static final double kWristShelf = 275;//front
       }
     }
