@@ -92,13 +92,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    m_robotContainer.zeroGyroHeading();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-
+    // m_robotContainer.runXTest();
   }
 
   @Override
