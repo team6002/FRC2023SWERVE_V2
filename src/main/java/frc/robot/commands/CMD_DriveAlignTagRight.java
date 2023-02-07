@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SUB_Drivetrain;
 import frc.robot.subsystems.SUB_LimeLight;
 
-public class CMD_DriveAlignTag extends CommandBase {
+public class CMD_DriveAlignTagRight extends CommandBase {
   SUB_Drivetrain m_drivetrain;
   SUB_LimeLight m_limeLight;
   double x, y, yaw, xSpeed, ySpeed, rotSpeed, xError, yError, yawError, x_p, y_p, yaw_p, timer;
@@ -17,7 +17,7 @@ public class CMD_DriveAlignTag extends CommandBase {
   boolean m_isFinishedTurn;
   boolean m_isFinishedDrive;
 
-  public CMD_DriveAlignTag(SUB_Drivetrain p_drivetrain, SUB_LimeLight p_limeLight) {
+  public CMD_DriveAlignTagRight(SUB_Drivetrain p_drivetrain, SUB_LimeLight p_limeLight) {
     m_drivetrain = p_drivetrain;
     m_limeLight = p_limeLight;
     m_isFinishedDrive = true;
@@ -43,7 +43,7 @@ public class CMD_DriveAlignTag extends CommandBase {
     xSpeed *= 0.2;
 
     if(m_limeLight.hasTarget()){
-      y = m_limeLight.getTargetY();
+      y = m_limeLight.getTargetY() - 21;
       x = m_limeLight.getTargetX();
       yaw = m_limeLight.getTargetYaw();
       yawError = 0 + yaw;
@@ -64,7 +64,7 @@ public class CMD_DriveAlignTag extends CommandBase {
         m_isFinishedStrafe = true;
       }
 
-      if(Math.abs(yaw) > 2.5/*&& m_isFinishedStrafe*/){
+      if(Math.abs(yaw) > 2.5){
         rotSpeed = yawError * yaw_p;
         m_isFinishedTurn = false;
       }else{
@@ -81,9 +81,7 @@ public class CMD_DriveAlignTag extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {
-    m_drivetrain.drive(0, 0, 0, false);
-  }
+  public void end(boolean interrupted) {}
 
 
   @Override

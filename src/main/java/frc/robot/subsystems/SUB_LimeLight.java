@@ -85,16 +85,17 @@ public class SUB_LimeLight extends SubsystemBase {
     return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0);
   }
 
+  
   public double getTargetX(){
-    return Units.metersToInches(botpose[0]);
+    return Units.metersToInches(-botpose[2]);
   }
 
   public double getTargetY(){
-    return Units.metersToInches( botpose[1]);
+    return Units.metersToInches(botpose[0]);
   }
 
   public double getTargetZ(){
-    return Units.metersToInches(-botpose[2]);
+    return Units.metersToInches(botpose[1]);
   }
 
   public double getTargetPitch(){

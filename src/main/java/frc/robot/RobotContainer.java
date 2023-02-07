@@ -60,7 +60,9 @@ public class RobotContainer {
    
     m_driverControllerTrigger.rightBumper().onTrue(new CMD_PlaceSecondLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
 
-    m_driverControllerTrigger.b().onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));
+    m_driverControllerTrigger.y().onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));
+    m_driverControllerTrigger.x().onTrue(new CMD_DriveAlignTagLeft(m_robotDrive, m_limeLight));
+    m_driverControllerTrigger.b().onTrue(new CMD_DriveAlignTagRight(m_robotDrive, m_limeLight));
   }
 
     public void zeroGyroHeading() {

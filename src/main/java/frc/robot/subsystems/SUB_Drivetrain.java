@@ -77,6 +77,14 @@ public class SUB_Drivetrain extends SubsystemBase {
     m_blinkin = p_blinkin;
     m_finiteStateMachine = p_finiteStateMachine;
     m_LimeLight = p_limeLight;
+    m_odometry.resetPosition(Rotation2d.fromDegrees(0), new SwerveModulePosition[] {
+      m_frontLeft.getPosition(),
+      m_frontRight.getPosition(),
+      m_rearLeft.getPosition(),
+      m_rearRight.getPosition()
+      }
+      ,new Pose2d(0, 0,Rotation2d.fromDegrees(0)));
+      
   }
 
   public void updateDashboardDrive(){
@@ -140,13 +148,9 @@ public class SUB_Drivetrain extends SubsystemBase {
   }
 
   public void telemetry(){
-    SmartDashboard.putNumber("pitch", getPitch());
-    SmartDashboard.putNumber("timer", timer);
-    SmartDashboard.putNumber("x", Units.metersToInches(relativeBotpose[0]));
-    SmartDashboard.putNumber("y", Units.metersToInches(relativeBotpose[1]));
-    SmartDashboard.putNumber("yaw", Units.metersToInches(relativeBotpose[2]));
-    SmartDashboard.putNumber("raw x", getX());
-    SmartDashboard.putNumber("raw y", getY());
+        SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
+        SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
+        SmartDashboard.putNumber("Odometry yaw", m_navx.getYaw());
   }
 
   /**
