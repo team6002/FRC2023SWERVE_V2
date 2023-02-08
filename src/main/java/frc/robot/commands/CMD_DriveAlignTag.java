@@ -12,7 +12,7 @@ import frc.robot.subsystems.SUB_LimeLight;
 public class CMD_DriveAlignTag extends CommandBase {
   SUB_Drivetrain m_drivetrain;
   SUB_LimeLight m_limeLight;
-  double x, y, yaw, xSpeed, ySpeed, rotSpeed, xError, yError, yawError, x_p, y_p, yaw_p, timer;
+  double x, y, yaw, xSpeed, ySpeed, rotSpeed, xError, yError, yawError, x_p, y_p, yaw_p, timer,x_f,y_f,yaw_f;
   boolean m_isFinishedStrafe;
   boolean m_isFinishedTurn;
   boolean m_isFinishedDrive;
@@ -26,9 +26,12 @@ public class CMD_DriveAlignTag extends CommandBase {
     xSpeed = 0;
     ySpeed = 0;
     rotSpeed = 0;
-    x_p = .0125 * 1.5;
-    y_p = .0033 * 1.5;
-    yaw_p = .0025 * 1.5;
+    x_p = 0.005;
+    x_f = 0.05;
+    y_p = .007;
+    y_f = 0.05;
+    yaw_p = .0025;
+    yaw_f = 0.05;
     timer = 0;
   }
 
@@ -50,22 +53,22 @@ public class CMD_DriveAlignTag extends CommandBase {
       xError = 0 + x;
       yError = 0 + y;
       
-      if(Math.abs(x) > 25){
-        xSpeed = xError * x_p;
+      if(Math.abs(x) > 30){
+        xSpeed = (xError * x_p)+ Math.copySign(x_f,x);
         m_isFinishedDrive = false;
       }else{
         m_isFinishedDrive = true;
       }
 
-      if(Math.abs(y) < 1){
-        ySpeed = yError * y_p;
+      if(Math.abs(y) > 1){
+        ySpeed = (yError * y_p)+ Math.copySign(y_f,y);
         m_isFinishedStrafe = false;
       }else{
         m_isFinishedStrafe = true;
       }
 
-      if(Math.abs(yaw) > 2.5/*&& m_isFinishedStrafe*/){
-        rotSpeed = yawError * yaw_p;
+      if(Math.abs(yaw) > 4){
+        rotSpeed = (yawError * yaw_p)+ Math.copySign(yaw_f,yaw);
         m_isFinishedTurn = false;
       }else{
         m_isFinishedTurn = true;
@@ -73,21 +76,18 @@ public class CMD_DriveAlignTag extends CommandBase {
       
       m_drivetrain.drive(xSpeed, ySpeed, rotSpeed, false);
       timer = 0;
-      
-    }else{
+      }else{
       timer += .02;
     }
-    SmartDashboard.putNumber("autodrive x", x);
   }
 
   @Override
-  public void end(boolean interrupted) {
-    m_drivetrain.drive(0, 0, 0, false);
-  }
+  public void end(boolean interrupted) {}
 
 
   @Override
   public boolean isFinished() {
+    m_drivetrain.setOdometryPositionInches(x, y, yaw);
     return m_isFinishedStrafe && m_isFinishedTurn && m_isFinishedDrive || timer > 2;
   }
 }

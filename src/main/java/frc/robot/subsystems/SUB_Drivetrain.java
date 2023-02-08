@@ -65,24 +65,16 @@ public class SUB_Drivetrain extends SubsystemBase {
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
       Rotation2d.fromDegrees(m_navx.getAngle()),
-      new SwerveModulePosition[] {
-          m_frontLeft.getPosition(),
-          m_frontRight.getPosition(),
-          m_rearLeft.getPosition(),
-          m_rearRight.getPosition()
-      });
+      getSwervePosition()
+      );
 
   /** Creates a new SUB_Drivetrain. */
   public SUB_Drivetrain(SUB_Blinkin p_blinkin, SUB_FiniteStateMachine p_finiteStateMachine, SUB_LimeLight p_limeLight) {
     m_blinkin = p_blinkin;
     m_finiteStateMachine = p_finiteStateMachine;
     m_LimeLight = p_limeLight;
-    m_odometry.resetPosition(Rotation2d.fromDegrees(0), new SwerveModulePosition[] {
-      m_frontLeft.getPosition(),
-      m_frontRight.getPosition(),
-      m_rearLeft.getPosition(),
-      m_rearRight.getPosition()
-      }
+    m_odometry.resetPosition(Rotation2d.fromDegrees(0),
+      getSwervePosition()
       ,new Pose2d(0, 0,Rotation2d.fromDegrees(0)));
       
   }
@@ -93,22 +85,24 @@ public class SUB_Drivetrain extends SubsystemBase {
     m_rearLeft.updateSmartDashboard();
     m_rearRight.updateSmartDashboard();
 
-    SmartDashboard.putNumber("m_navx.getAngle()", m_navx.getAngle());
+    SmartDashboard.putNumber("m_navx.getAngle()", getAngle());
     SmartDashboard.putNumber("m_navx.getRotation2d()", m_navx.getRotation2d().getDegrees());
   }
-
+  public SwerveModulePosition[] getSwervePosition(){
+    return new SwerveModulePosition[] {
+      m_frontLeft.getPosition(),
+      m_frontRight.getPosition(),
+      m_rearLeft.getPosition(),
+      m_rearRight.getPosition()
+    };
+  }
   @Override
   public void periodic() {
     updateDashboardDrive();
     // Update the odometry in the periodic block
     m_odometry.update(
         Rotation2d.fromDegrees(m_navx.getAngle()),
-        new SwerveModulePosition[] {
-            m_frontLeft.getPosition(),
-            m_frontRight.getPosition(),
-            m_rearLeft.getPosition(),
-            m_rearRight.getPosition()
-        });
+        getSwervePosition());
         
         if(m_finiteStateMachine.getState() == RobotState.BALANCING){
           if(Math.abs(getPitch()) < 5){
@@ -182,12 +176,7 @@ public class SUB_Drivetrain extends SubsystemBase {
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
         Rotation2d.fromDegrees(m_navx.getAngle()),
-        new SwerveModulePosition[] {
-            m_frontLeft.getPosition(),
-            m_frontRight.getPosition(),
-            m_rearLeft.getPosition(),
-            m_rearRight.getPosition()
-        },
+        getSwervePosition(),
         pose);
   }
 
@@ -227,7 +216,10 @@ public class SUB_Drivetrain extends SubsystemBase {
     m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
-
+  public void setOdometryPositionInches(double X, double Y, double Angle){//put Inches in this function
+    Pose2d p_wantedPose2d = new Pose2d(Units.inchesToMeters(X),Units.inchesToMeters(Y),Rotation2d.fromDegrees(Angle)); 
+    m_odometry.resetPosition(m_navx.getRotation2d(), getSwervePosition(), p_wantedPose2d);
+  }
   /**
    * Sets the swerve ModuleStates.
    *
@@ -250,17 +242,17 @@ public class SUB_Drivetrain extends SubsystemBase {
     m_rearRight.resetEncoders();
   }
 
-  /** Zeroes the heading of the robot. */
-  public void zeroHeading() {
+  /** Zeroes the Angle of the robot. */
+  public void zeroAngle() {
     m_navx.zeroYaw();
   }
 
   /**
-   * Returns the heading of the robot.
+   * Returns the Angle of the robot.
    *
-   * @return the robot's heading in degrees, from -180 to 180
+   * @return the robot's Angle in degrees, from -180 to 180
    */
-  public double getHeading() {
+  public double getAngle() {
     return Rotation2d.fromDegrees(m_navx.getAngle()).getDegrees();
   }
 

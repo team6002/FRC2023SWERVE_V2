@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    m_robotContainer.zeroGyroHeading();
+    m_robotContainer.zeroGyroAngle();
   }
 
   /** This function is called periodically during operator control. */
