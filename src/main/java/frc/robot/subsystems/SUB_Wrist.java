@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxPIDController;
@@ -30,10 +31,10 @@ public class SUB_Wrist extends SubsystemBase {
       m_wristEncoder.setVelocityConversionFactor(6);
       m_wristEncoder.setInverted(false);
       // m_wristMotor.setSoftLimit(null, 80);
-      m_wristMotorPIDController.setP(0.00,1);
-      m_wristMotorPIDController.setI(0,1);
-      m_wristMotorPIDController.setD(0,1);
-      m_wristMotorPIDController.setFF(0.05,1);
+      m_wristMotorPIDController.setP(WristConstants.kWristP,1);
+      m_wristMotorPIDController.setI(WristConstants.kWristI,1);
+      m_wristMotorPIDController.setD(WristConstants.kWristI,1);
+      m_wristMotorPIDController.setFF(WristConstants.kWristF,1);
       m_wristMotorPIDController.setFeedbackDevice(m_wristEncoder);
       m_wristMotorPIDController.setPositionPIDWrappingEnabled(false);
       m_wristMotorPIDController.setOutputRange(-1, 1, 1);

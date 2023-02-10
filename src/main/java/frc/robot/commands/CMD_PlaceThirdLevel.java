@@ -25,12 +25,13 @@ public class CMD_PlaceThirdLevel extends SequentialCommandGroup {
   SUB_Elbow m_elbow;
   SUB_Wrist m_wrist;
   SUB_FiniteStateMachine m_finiteStateMachine;
-  public CMD_PlaceThirdLevel(SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Elbow p_elbow, SUB_Wrist p_wrist, SUB_FiniteStateMachine p_finiteStatemachine) {
+  public CMD_PlaceThirdLevel(SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Elbow p_elbow, SUB_Wrist p_wrist, SUB_FiniteStateMachine p_finiteStateMachine) {
     m_elevator = p_elevator;
     m_intake = p_intake;
     m_elbow = p_elbow;
     m_wrist = p_wrist;
-    m_finiteStateMachine = p_finiteStatemachine;
+    m_finiteStateMachine = p_finiteStateMachine;
+    addRequirements(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

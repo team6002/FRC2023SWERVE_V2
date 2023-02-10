@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.ElbowConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -44,6 +45,7 @@ public class RobotContainer {
 
     // Configure default commands
     m_robotDrive.setDefaultCommand(new CMD_DriveCommand(m_robotDrive, m_driverControllerTrigger));
+    // m_elevator.setDefaultCommand(new CMD_ElevatorSetPower(m_elevator, m_driverControllerTrigger));
   }
   boolean pressed = false;
   private void configureButtonBindings() {
@@ -59,6 +61,9 @@ public class RobotContainer {
     m_driverControllerTrigger.leftBumper().onTrue(new CMD_PlaceThirdLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
    
     m_driverControllerTrigger.rightBumper().onTrue(new CMD_PlaceSecondLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
+
+    m_driverControllerTrigger.back().onTrue(new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp));
+
 
     m_driverControllerTrigger.y().onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));
     m_driverControllerTrigger.x().onTrue(new CMD_DriveAlignLeft(m_robotDrive, m_limeLight));

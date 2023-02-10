@@ -194,9 +194,17 @@ public final class Constants {
         public static final double kElbowBackwards = 103;// straigjt back
         public static final double kElbowStowShelf = 180;// for when we want to contiously pick up from shelf
         public static final double kElbowStowGround = 135;// for when we want to continously pick up from ground
+        public static final double kElbowP = .01;
+        public static final double kElbowI = 0;
+        public static final double kElbowD = 0;
+        public static final double kElbowF = 0.000445;
       }
 
       public static final class WristConstants{
+        public static final double kWristP = 0.04;
+        public static final double kWristI = 0;
+        public static final double kWristD = 0;
+        public static final double kWristF = 0.05;
         public static final int kWristMotorCanID = 10;
         public static final double kWristGround = 90;//back
         public static final double kWristShelf = 275;//front

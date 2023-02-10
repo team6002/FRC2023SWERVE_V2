@@ -17,6 +17,7 @@ import frc.robot.subsystems.SUB_Wrist;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class CMD_IntakeGround extends SequentialCommandGroup {
   public CMD_IntakeGround(SUB_Elbow p_elbow, SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Wrist p_wrist) {
+    addRequirements(p_elbow, p_elevator, p_intake, p_wrist);
     addCommands(
       new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),//ground position
       new CMD_WristFlip(p_wrist, p_elbow, 1),

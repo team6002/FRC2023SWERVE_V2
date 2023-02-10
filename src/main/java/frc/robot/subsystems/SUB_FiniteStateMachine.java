@@ -4,8 +4,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SUB_FiniteStateMachine {
+public class SUB_FiniteStateMachine extends SubsystemBase{
 
     public enum RobotState 
     {

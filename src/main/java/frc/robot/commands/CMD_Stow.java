@@ -16,10 +16,11 @@ import frc.robot.subsystems.SUB_Wrist;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class CMD_Stow extends SequentialCommandGroup {
-  public CMD_Stow(SUB_Elevator p_elevator, SUB_Intake m_intake, SUB_Elbow p_elbow, SUB_Wrist p_wrist) {
+  public CMD_Stow(SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Elbow p_elbow, SUB_Wrist p_wrist) {
+    addRequirements(p_elevator, p_intake, p_elbow, p_wrist);
 
     addCommands(
-      new CMD_IntakeOff(m_intake),
+      new CMD_IntakeOff(p_intake),
       new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
       new CMD_WristFlip(p_wrist, p_elbow, 0),
       new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorHome),
