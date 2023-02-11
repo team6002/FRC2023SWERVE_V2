@@ -43,7 +43,7 @@ public class SUB_Elevator extends SubsystemBase {
       m_elevatorMotorPIDController.setOutputRange(-2, 2, 1);
       m_elevatorMotorPIDController.setSmartMotionMaxVelocity(120, 1);
       m_elevatorMotorPIDController.setSmartMotionMinOutputVelocity(-20, 1);
-      m_elevatorMotorPIDController.setSmartMotionMaxAccel(120, 1);
+      m_elevatorMotorPIDController.setSmartMotionMaxAccel(40, 1);
       m_elevatorMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
       m_elevatorMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);
 
@@ -106,31 +106,31 @@ public class SUB_Elevator extends SubsystemBase {
     SmartDashboard.putNumber("elevator Position", m_elevatorEncoder.getPosition());
     SmartDashboard.putNumber("elevator Position (numeric)", m_elevatorEncoder.getPosition());
 
-    m_P = SmartDashboard.getNumber("P", m_P);
-    m_I = SmartDashboard.getNumber("I", m_I);
-    m_D = SmartDashboard.getNumber("D", m_D);
-    m_F = SmartDashboard.getNumber("F", m_F);
-    m_wantedPosition = SmartDashboard.getNumber("wantedPosition", m_wantedPosition);
+    // m_P = SmartDashboard.getNumber("P", m_P);
+    // m_I = SmartDashboard.getNumber("I", m_I);
+    // m_D = SmartDashboard.getNumber("D", m_D);
+    // m_F = SmartDashboard.getNumber("F", m_F);
+    // m_wantedPosition = SmartDashboard.getNumber("wantedPosition", m_wantedPosition);
 
-    SmartDashboard.putNumber("P", m_P);
-    SmartDashboard.putNumber("I", m_I);
-    SmartDashboard.putNumber("D", m_D);
-    SmartDashboard.putNumber("F", m_F);
-    SmartDashboard.putNumber("wantedPosition", m_wantedPosition);
+    // SmartDashboard.putNumber("P", m_P);
+    // SmartDashboard.putNumber("I", m_I);
+    // SmartDashboard.putNumber("D", m_D);
+    // SmartDashboard.putNumber("F", m_F);
+    // SmartDashboard.putNumber("wantedPosition", m_wantedPosition);
    
-    m_elevatorMotorPIDController.setP(m_P,1);
-    m_elevatorMotorPIDController.setI(m_I,1);
-    m_elevatorMotorPIDController.setD(m_D,1);
-    m_elevatorMotorPIDController.setFF(m_F,1);
-    m_elevatorMotorPIDController.setReference(m_wantedPosition, ControlType.kSmartMotion, 1);
+    // m_elevatorMotorPIDController.setP(m_P,1);
+    // m_elevatorMotorPIDController.setI(m_I,1);
+    // m_elevatorMotorPIDController.setD(m_D,1);
+    // m_elevatorMotorPIDController.setFF(m_F,1);
+    // m_elevatorMotorPIDController.setReference(m_wantedPosition, ControlType.kSmartMotion, 1);
 
-    SmartDashboard.putNumber("velocity", m_elevatorEncoder.getVelocity());
-    SmartDashboard.putNumber("output", m_elevatorMotor.getAppliedOutput());
-    SmartDashboard.putNumber("wantedspeed", m_elevatorMotor.get());
-    SmartDashboard.putNumber("AccelStrat", m_elevatorMotorPIDController.getSmartMotionMaxAccel(1));
-    SmartDashboard.putNumber("elevator P", m_elevatorMotorPIDController.getP());
-    SmartDashboard.putNumber("elevator I", m_elevatorMotorPIDController.getI());
-    SmartDashboard.putNumber("elevator D", m_elevatorMotorPIDController.getD());
-    SmartDashboard.putNumber("elevator F", m_elevatorMotorPIDController.getFF());
+    // SmartDashboard.putNumber("velocity", m_elevatorEncoder.getVelocity());
+    // SmartDashboard.putNumber("output", m_elevatorMotor.getAppliedOutput());
+    // SmartDashboard.putNumber("wantedspeed", m_elevatorMotor.get());
+    // SmartDashboard.putNumber("AccelStrat", m_elevatorMotorPIDController.getSmartMotionMaxAccel(1));
+    // SmartDashboard.putNumber("elevator P", m_elevatorMotorPIDController.getP());
+    // SmartDashboard.putNumber("elevator I", m_elevatorMotorPIDController.getI());
+    // SmartDashboard.putNumber("elevator D", m_elevatorMotorPIDController.getD());
+    // SmartDashboard.putNumber("elevator F", m_elevatorMotorPIDController.getFF());
   }
 }

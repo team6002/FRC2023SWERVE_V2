@@ -38,9 +38,9 @@ public class SUB_Wrist extends SubsystemBase {
       m_wristMotorPIDController.setFeedbackDevice(m_wristEncoder);
       m_wristMotorPIDController.setPositionPIDWrappingEnabled(false);
       m_wristMotorPIDController.setOutputRange(-1, 1, 1);
-      m_wristMotorPIDController.setSmartMotionMaxVelocity(10, 1);
+      m_wristMotorPIDController.setSmartMotionMaxVelocity(5, 1);
       m_wristMotorPIDController.setSmartMotionMinOutputVelocity(-0, 1);
-      m_wristMotorPIDController.setSmartMotionMaxAccel(10, 1);
+      m_wristMotorPIDController.setSmartMotionMaxAccel(5, 1);
       m_wristMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
       m_wristMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);
     }

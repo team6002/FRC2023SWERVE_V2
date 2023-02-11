@@ -173,10 +173,10 @@ public final class Constants {
 
       public static final class ElevatorConstants{
         public static final int kElevatorMotorCanID = 17;
-        public static final double kElevatorP = 0.00;
+        public static final double kElevatorP = 0.0005;
         public static final double kElevatorI = 0;
         public static final double kElevatorD = 0.;
-        public static final double kElevatorF = 0.0;
+        public static final double kElevatorF = 0.005;
         public static final double kElevatorForward = .5;
         public static final double kElevatorOffset = -.487;
         public static final double kPowerLimit = .2;
@@ -186,14 +186,15 @@ public final class Constants {
         public static final double kElevatorSecondLevel = 33;  
         public static final double kElevatorHome = 0;
         public static final double kElevatorStow = 0;
+        public static final double kElevatorPrep = 23;//Position for safely moving elbow to score
       }
 
       public static final class ElbowConstants{
         public static final int kElbowMotorCanID = 11;
         public static final double kElbowUp = 180;// about 90 degrees up
         public static final double kElbowForwards = 260;// stright forwards
-        public static final double kElbowBackwards = 103;// straight back
-        public static final double kElbowP = .01;
+        public static final double kElbowBackwards = 95;// straight back
+        public static final double kElbowP = .0075;
         public static final double kElbowI = 0;
         public static final double kElbowD = 0;
         public static final double kElbowF = 0.000445;

@@ -5,21 +5,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.SUB_Intake;
+import frc.robot.subsystems.SUB_FiniteStateMachine;
+import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;;
 
-public class CMD_ToggleIntakeState extends CommandBase {
-  SUB_Intake m_intake;
-  public CMD_ToggleIntakeState(SUB_Intake p_intake) {
-    m_intake = p_intake;
+public class CMD_setState extends CommandBase {
+  SUB_FiniteStateMachine m_finiteStateMachine;
+  RobotState m_state;
+  public CMD_setState(SUB_FiniteStateMachine p_finiteStateMachine, RobotState p_state) {
+    m_finiteStateMachine = p_finiteStateMachine;
+    m_state = p_state;
   }
 
   @Override
   public void initialize() {
-    if(m_intake.getIntakeState() == true){
-      m_intake.setIntakeState(false);
-    }else{
-      m_intake.setIntakeState(true);
-    }
+    m_finiteStateMachine.setState(m_state);
   }
 
   @Override

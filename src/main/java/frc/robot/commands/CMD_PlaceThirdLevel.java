@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ElbowConstants;
@@ -37,9 +38,13 @@ public class CMD_PlaceThirdLevel extends SequentialCommandGroup {
     addCommands(
       new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp),
       new CMD_WristSetPosition(m_elbow, m_wrist, WristConstants.kWristShelf),
-      new CMD_ElevatorSetPosition(m_elevator, ElevatorConstants.kElevatorThirdLevel),
-      new CMD_ElevatorCheck(m_elevator, ElevatorConstants.kElevatorThirdLevel),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowForwards),
+      new CMD_ElevatorSetPosition(m_elevator, ElevatorConstants.kElevatorPrep),
+      new CMD_ElevatorCheck(m_elevator, ElevatorConstants.kElevatorPrep),
+      new ParallelCommandGroup(
+        new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorThirdLevel),
+        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowForwards)
+      ),
+      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorThirdLevel),
       new CMD_IntakeDrop(m_intake, m_finiteStateMachine),
       new WaitCommand(1),
       new CMD_Stow(m_elevator, m_intake, m_elbow, m_wrist)
