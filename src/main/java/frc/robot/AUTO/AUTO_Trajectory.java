@@ -51,7 +51,7 @@ public class AUTO_Trajectory {
         TrajectoryGenerator.generateTrajectory(
         new Pose2d(0, 0, new Rotation2d(0)),
         List.of(),
-        new Pose2d(Units.inchesToMeters(72), 0, new Rotation2d(Math.toDegrees(0))),
+        new Pose2d(Units.inchesToMeters(100), 0, new Rotation2d(Math.toDegrees(0))),
         config);
 
         // test2Trajectory =
@@ -74,10 +74,10 @@ public class AUTO_Trajectory {
      
         // Create config for trajectory
         var thetaController =
-            new ProfiledPIDController(0
+            new ProfiledPIDController(0.01
                 /*AutoConstants.kPThetaController*/ , 0, 0, AutoConstants.kThetaControllerConstraints);
         thetaController.enableContinuousInput(-Math.PI, Math.PI);
-        // thetaController.setTolerance(Math.toDegrees(3));
+        thetaController.setTolerance(Math.toDegrees(1));
 
         SwerveControllerCommand SUB_ControllerCommand =
         new SwerveControllerCommand(
@@ -86,8 +86,8 @@ public class AUTO_Trajectory {
             DriveConstants.kDriveKinematics,
 
             // Position controllers
-            new PIDController(0,0,0),//AutoConstants.kPXController, 0, 0),
-            new PIDController(0,0,0),//AutoConstants.kPYController, 0, 0),
+            new PIDController(5,0,0),//AutoConstants.kPXController, 0, 0),
+            new PIDController(5,0,0),//AutoConstants.kPYController, 0, 0),
             thetaController,
             m_drivetrain::setModuleStates,
             m_drivetrain);

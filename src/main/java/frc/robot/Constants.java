@@ -152,8 +152,8 @@ public final class Constants {
         public static final double kMaxSpeedMetersPerSecond = Units.inchesToMeters(75);
         public static final double kMaxAccelerationMetersPerSecondSquared = Units.inchesToMeters(100);
      
-        public static final double kMaxAngularSpeedRadiansPerSecond = 2*Math.PI;
-        public static final double kMaxAngularSpeedRadiansPerSecondSquared = 2*Math.PI;
+        public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI / 4;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI / 4;
     
         public static final double kPXController = 1;
         public static final double kPYController = 1;
