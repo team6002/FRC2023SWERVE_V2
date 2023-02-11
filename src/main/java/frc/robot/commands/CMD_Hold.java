@@ -25,7 +25,7 @@ public class CMD_Hold extends SequentialCommandGroup {
       new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
       new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
       new CMD_WristFlip(p_wrist, p_elbow, 0),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp)
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStow)
     );
   }
 }

@@ -23,8 +23,8 @@ public class CMD_Stow extends SequentialCommandGroup {
       new CMD_IntakeOff(p_intake),
       new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
       new CMD_WristFlip(p_wrist, p_elbow, 0),
-      new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorHome),
-      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp));
+      new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
+      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorStow),
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStow));
   }
 }
