@@ -47,10 +47,10 @@ public class SUB_Elevator extends SubsystemBase {
       m_elevatorMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
       m_elevatorMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);
 
-      m_elevatorMotorPIDController.setP(0.000001,2);
+      m_elevatorMotorPIDController.setP(0.009,2);
       m_elevatorMotorPIDController.setI(0,2);
       m_elevatorMotorPIDController.setD(0,2);
-      m_elevatorMotorPIDController.setFF(0.005,2);
+      m_elevatorMotorPIDController.setFF(0.001,2);
       m_elevatorMotorPIDController.setOutputRange(-1, 1, 2);
       m_elevatorMotorPIDController.setSmartMotionMaxVelocity(10, 2);
       m_elevatorMotorPIDController.setSmartMotionMinOutputVelocity(0, 2);
