@@ -14,62 +14,38 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants.ElevatorConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 public class SUB_Elevator extends SubsystemBase {
   private final CANSparkMax m_elevatorMotor;
   private final SparkMaxPIDController m_elevatorMotorPIDController;
   private final RelativeEncoder m_elevatorEncoder;
-  private double m_wantedPosition;
 
     public SUB_Elevator() {
       m_elevatorMotor = new CANSparkMax(ElevatorConstants.kElevatorMotorCanID, MotorType.kBrushless);
       m_elevatorMotorPIDController = m_elevatorMotor.getPIDController();
       m_elevatorEncoder = m_elevatorMotor.getEncoder();
+      m_elevatorMotor.restoreFactoryDefaults();
       m_elevatorEncoder.setPositionConversionFactor(.706);
       m_elevatorEncoder.setVelocityConversionFactor(0.0117);
-      m_elevatorMotor.setInverted(true);
-      // m_elevatorMotorPIDController.setP(elevatorConstants.kelevatorP);
-      // m_elevatorMotorPIDController.setI(elevatorConstants.kelevatorI);
-      // m_elevatorMotorPIDController.setD(elevatorConstants.kelevatorD);
-      // m_elevatorMotorPIDController.setFF(elevatorConstants.kelevatorF);
-      m_elevatorMotorPIDController.setP(0.04,1);
-      m_elevatorMotorPIDController.setI(0,1);
-      m_elevatorMotorPIDController.setD(0,1);
-      m_elevatorMotorPIDController.setFF(0.04,1);
+      m_elevatorMotor.setInverted(false);
+      m_elevatorMotorPIDController.setP(ElevatorConstants.kElevatorP,1);
+      m_elevatorMotorPIDController.setI(ElevatorConstants.kElevatorI,1);
+      m_elevatorMotorPIDController.setD(ElevatorConstants.kElevatorD,1);
+      m_elevatorMotorPIDController.setFF(ElevatorConstants.kElevatorF,1);
       m_elevatorMotorPIDController.setFeedbackDevice(m_elevatorEncoder);
       m_elevatorMotor.setIdleMode(IdleMode.kCoast);
       m_elevatorMotorPIDController.setPositionPIDWrappingEnabled(false);
-      m_elevatorMotorPIDController.setOutputRange(-2, 2, 1);
-      m_elevatorMotorPIDController.setSmartMotionMaxVelocity(120, 1);
-      m_elevatorMotorPIDController.setSmartMotionMinOutputVelocity(-20, 1);
+      m_elevatorMotorPIDController.setOutputRange(-1, 1, 1);
+      m_elevatorMotorPIDController.setSmartMotionMaxVelocity(40, 1);
+      m_elevatorMotorPIDController.setSmartMotionMinOutputVelocity(0, 1);
       m_elevatorMotorPIDController.setSmartMotionMaxAccel(40, 1);
       m_elevatorMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
       m_elevatorMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);
-
-      m_elevatorMotorPIDController.setP(0.009,2);
-      m_elevatorMotorPIDController.setI(0,2);
-      m_elevatorMotorPIDController.setD(0,2);
-      m_elevatorMotorPIDController.setFF(0.001,2);
-      m_elevatorMotorPIDController.setOutputRange(-1, 1, 2);
-      m_elevatorMotorPIDController.setSmartMotionMaxVelocity(10, 2);
-      m_elevatorMotorPIDController.setSmartMotionMinOutputVelocity(0, 2);
-      m_elevatorMotorPIDController.setSmartMotionMaxAccel(10, 2);
-      m_elevatorMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 2);
-      m_elevatorMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 2);
-      m_elevatorEncoder.setPosition(0);
+      m_elevatorMotor.burnFlash();
     }
 
-    // public void setPosition(double position){
-    //   m_elevatorMotorPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
-    // }
     public void setPosition(double p_reference){
-      // m_wantedPosition = p_reference;
-      // if(p_reference > 100){
-        m_elevatorMotorPIDController.setReference(p_reference, CANSparkMax.ControlType.kSmartMotion,1);
-      // }else{
-      //   m_elevatorMotorPIDController.setReference(p_reference, CANSparkMax.ControlType.kSmartMotion,2);
-      // }
+      m_elevatorMotorPIDController.setReference(p_reference, CANSparkMax.ControlType.kSmartMotion,1);
     } 
     public double getPosition(){
       return m_elevatorEncoder.getPosition();
@@ -80,7 +56,7 @@ public class SUB_Elevator extends SubsystemBase {
   }
 
   public void setElevatorOff(){
-    m_elevatorMotorPIDController.setReference(m_elevatorEncoder.getPosition(), ControlType.kPosition);
+    m_elevatorMotorPIDController.setReference(m_elevatorEncoder.getPosition(), ControlType.kSmartMotion);
   }
 
   public void setElevatorReverse(){

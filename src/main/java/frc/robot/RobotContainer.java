@@ -74,9 +74,9 @@ public class RobotContainer {
     // m_driverControllerTrigger.x().onTrue(new CMD_DriveAlignLeft(m_robotDrive, m_limeLight));
     // m_driverControllerTrigger.b().onTrue(new CMD_DriveAlignRight(m_robotDrive, m_limeLight));
 
-    m_driverControllerTrigger.leftBumper().onTrue(new ConditionalCommand((new CMD_Hold(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine)),
+    m_driverControllerTrigger.leftBumper().onTrue(new ConditionalCommand((new CMD_HoldShelf(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine)),
     new CMD_IntakeShelf(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine), IntakeToggle));
-    m_driverControllerTrigger.rightBumper().onTrue(new ConditionalCommand((new CMD_Hold(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine)),
+    m_driverControllerTrigger.rightBumper().onTrue(new ConditionalCommand((new CMD_HoldGround(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine)),
     new CMD_IntakeGround(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine), IntakeToggle));
 
     m_driverControllerTrigger.y().onTrue(new CMD_PlaceThirdLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));

@@ -15,6 +15,7 @@ import frc.robot.subsystems.SUB_Elevator;
 import frc.robot.subsystems.SUB_FiniteStateMachine;
 import frc.robot.subsystems.SUB_Intake;
 import frc.robot.subsystems.SUB_Wrist;
+import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -36,13 +37,14 @@ public class CMD_PlaceThirdLevel extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp),
-      new CMD_WristSetPosition(m_elbow, m_wrist, WristConstants.kWristShelf),
+      new CMD_setState(p_finiteStateMachine, RobotState.SCORING),
+      new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowLift),
       new CMD_ElevatorSetPosition(m_elevator, ElevatorConstants.kElevatorPrep),
       new CMD_ElevatorCheck(m_elevator, ElevatorConstants.kElevatorPrep),
       new ParallelCommandGroup(
         new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorThirdLevel),
-        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowForwards)
+        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowForwards),
+        new CMD_WristSetPosition(m_elbow, m_wrist, WristConstants.kWristShelf)
       ),
       new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorThirdLevel),
       new CMD_IntakeDrop(m_intake, m_finiteStateMachine),

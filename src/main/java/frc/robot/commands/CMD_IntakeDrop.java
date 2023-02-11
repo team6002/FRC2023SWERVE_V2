@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SUB_Intake;
 import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;
+import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.SUB_FiniteStateMachine;
 
 public class CMD_IntakeDrop extends CommandBase {
@@ -25,14 +26,12 @@ public class CMD_IntakeDrop extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-    m_finiteStateMachine.setState(RobotState.INTAKING);
-    
+  public void initialize() {    
     m_intake.setIntakeCurrent();
     if(m_intake.getIntakeState() == false){
-      m_intake.setIntakeForward();
+      m_intake.setPower(IntakeConstants.kIntakeDrop);
     }else{
-      m_intake.setIntakeReverse();
+      m_intake.setPower(-IntakeConstants.kIntakeDrop);
     }
   }
 

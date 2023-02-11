@@ -24,10 +24,10 @@ public class CMD_IntakeGround extends SequentialCommandGroup {
       new CMD_setState(p_finiteStamchine, RobotState.INTAKING),
       new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),//ground position
       new CMD_WristFlip(p_wrist, p_elbow, 1),
+      new CMD_IntakeOn(p_intake),
       new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorHome),
       new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowBackwards),
-      new CMD_IntakeOn(p_intake)
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowBackwards)
     );
   }
 }
