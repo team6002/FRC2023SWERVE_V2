@@ -5,6 +5,7 @@
 package frc.robot.AUTO;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class AUTO_Test extends SequentialCommandGroup {
   AUTO_Trajectory m_trajectory;
@@ -14,6 +15,9 @@ public class AUTO_Test extends SequentialCommandGroup {
     addCommands(
       new SequentialCommandGroup(
         m_trajectory.driveTrajectory(m_trajectory.testTrajectory)
+        // new WaitCommand(1),
+        // m_trajectory.driveTrajectory(m_trajectory.test2Trajectory)
+
       )
   );
   }

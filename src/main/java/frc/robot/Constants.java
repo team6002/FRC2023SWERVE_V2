@@ -35,11 +35,11 @@ public final class Constants {
         public static final double positionConversionFactor = (Math.PI * kwheeldiameter) / kdriveReduction;
         public static final double ksteeringReduction = (10.0 / 30.0 ) * (18.0 / 96.0);
         public static final double analogPositionConversionFactor = (2 * Math.PI / 3.3);
-        //drive motor pid
-        public static final double kDriveP = 0.01;  
+        // //drive motor pid
+        public static final double kDriveP = 0.1;  
         public static final double kDriveI = 0;
-        public static final double kDriveD = 0.6;//0.1;
-        public static final double kDriveF = 0.21;//0.2;
+        public static final double kDriveD = 0.04;//0.1;
+        public static final double kDriveF = 0.165;
         //turning motor pid
         public static final double kTurnP = 0.7;//0.8;
         public static final double kTurnI = 0;//0.00;
@@ -149,15 +149,15 @@ public final class Constants {
     public static final class AutoConstants {
         // public static final double kMaxSpeedMetersPerSecond = DriveConstants.kMaxSpeedMetersPerSecond;
         // public static final double kMaxAccelerationMetersPerSecondSquared = DriveConstants.kMaxSpeedMetersPerSecond;
-        public static final double kMaxSpeedMetersPerSecond = 4.0;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 4.0;
+        public static final double kMaxSpeedMetersPerSecond = Units.inchesToMeters(75);
+        public static final double kMaxAccelerationMetersPerSecondSquared = Units.inchesToMeters(100);
      
-        public static final double kMaxAngularSpeedRadiansPerSecond = 4*Math.PI;
-        public static final double kMaxAngularSpeedRadiansPerSecondSquared = 4*Math.PI;
+        public static final double kMaxAngularSpeedRadiansPerSecond = 2*Math.PI;
+        public static final double kMaxAngularSpeedRadiansPerSecondSquared = 2*Math.PI;
     
-        public static final double kPXController = 2;
-        public static final double kPYController = 2;
-        public static final double kPThetaController = 2;
+        public static final double kPXController = 1;
+        public static final double kPYController = 1;
+        public static final double kPThetaController = 1;
     
         // Constraint for the motion profilied robot angle controller
         public static final TrapezoidProfile.Constraints kThetaControllerConstraints =

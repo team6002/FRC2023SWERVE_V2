@@ -17,6 +17,7 @@ import frc.robot.Constants.ElbowConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;
+import frc.robot.AUTO.*;
 
 
 /*
@@ -33,8 +34,9 @@ public class RobotContainer {
   private final SUB_Blinkin m_blinkin = new SUB_Blinkin();
   private final SUB_FiniteStateMachine m_finiteStateMachine = new SUB_FiniteStateMachine();
   private final SUB_LimeLight m_limeLight = new SUB_LimeLight(m_blinkin, m_finiteStateMachine);
-  private final SUB_Drivetrain m_robotDrive = new SUB_Drivetrain(m_blinkin, m_finiteStateMachine, m_limeLight);
+  public final SUB_Drivetrain m_robotDrive = new SUB_Drivetrain(m_blinkin, m_finiteStateMachine, m_limeLight);
   private final SUB_Intake m_intake = new SUB_Intake(m_finiteStateMachine, m_blinkin, m_limeLight);
+  private final AUTO_Trajectory m_trajectory = new AUTO_Trajectory(m_robotDrive);
   private final BooleanSupplier IntakeToggle = () -> m_finiteStateMachine.getState() == RobotState.INTAKING;
   // The driver's controller
   XboxController m_operatorController = new XboxController(1);
@@ -55,18 +57,6 @@ public class RobotContainer {
   boolean pressed = false;
   private void configureButtonBindings() {
 
-    // m_driverControllerTrigger.a().onTrue(new CMD_ToggleIntakeState(m_intake));
-
-    // m_driverControllerTrigger.leftTrigger().onTrue(new CMD_IntakeShelf(m_elbow, m_elevator, m_intake, m_wrist))
-    // .onFalse(new CMD_Hold(m_intake, m_elbow, m_elevator, m_wrist));
-
-    // m_driverControllerTrigger.rightTrigger().onTrue(new CMD_IntakeGround(m_elbow, m_elevator, m_intake, m_wrist))
-    // .onFalse(new CMD_Hold(m_intake, m_elbow, m_elevator, m_wrist));
-
-    // m_driverControllerTrigger.leftBumper().onTrue(new CMD_PlaceThirdLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
-   
-    // m_driverControllerTrigger.rightBumper().onTrue(new CMD_PlaceSecondLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
-
     // m_driverControllerTrigger.back().onTrue(new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp));
 
 
@@ -81,6 +71,10 @@ public class RobotContainer {
 
     m_driverControllerTrigger.y().onTrue(new CMD_PlaceThirdLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
     m_driverControllerTrigger.x().onTrue(new CMD_PlaceSecondLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
+    m_driverControllerTrigger.a().onTrue(new CMD_PlaceGround(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
+
+    // m_driverControllerTrigger.b().onTrue(new CMD_ToggleIntakeState(m_intake));
+    m_driverControllerTrigger.b().onTrue(new AUTO_Test(m_trajectory));
   }
 
     public void zeroGyroAngle() {

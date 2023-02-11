@@ -8,6 +8,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -161,10 +162,10 @@ public class SwerveModule {
     m_turningPIDController.setReference(optimizedDesiredState.angle.getRadians(), CANSparkMax.ControlType.kPosition);
     // m_optimizedDesiredState = optimizedDesiredState.angle.getRadians();
     m_desiredState = desiredState;
-    // m_optimizedDesiredSpeed = optimizedDesiredState.speedMetersPerSecond;
+    m_optimizedDesiredSpeed = optimizedDesiredState.speedMetersPerSecond;
   }
   // private double m_optimizedDesiredState = 0;
-  // private double m_optimizedDesiredSpeed = 0;
+  private double m_optimizedDesiredSpeed = 0;
   /** Zeroes all the SwerveModule encoders. */
   public void resetEncoders() {
     m_drivingEncoder.setPosition(0);
@@ -174,8 +175,8 @@ public class SwerveModule {
     // SmartDashboard.putNumber(m_moduleChannelStr+"DesiredAngle", m_optimizedDesiredState);
     // SmartDashboard.putNumber(m_moduleChannelStr+"AbsoluteAngle", m_turningEncoder.getPosition());
     // SmartDashboard.putNumber(m_moduleChannelStr+"AbsoluteAngleinDegrees", Math.toDegrees(m_turningEncoder.getPosition()));
-    // SmartDashboard.putNumber(m_moduleChannelStr+"DesiredSpeed", m_optimizedDesiredSpeed);
-    // SmartDashboard.putNumber(m_moduleChannelStr+"MeasuredSpeed", m_drivingEncoder.getVelocity());
+    SmartDashboard.putNumber(m_moduleChannelStr+"DesiredSpeed", m_optimizedDesiredSpeed);
+    SmartDashboard.putNumber(m_moduleChannelStr+"MeasuredSpeed", m_drivingEncoder.getVelocity());
     // SmartDashboard.putNumber(m_moduleChannelStr+"DistanceTravled", m_drivingEncoder.getPosition());
     }
 }

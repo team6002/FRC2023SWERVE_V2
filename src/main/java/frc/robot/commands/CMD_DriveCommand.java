@@ -74,7 +74,7 @@ public class CMD_DriveCommand extends CommandBase {
 
 
     m_drivetrain.drive( xSpeed, ySpeed, rot,true);
-    // m_drivetrain.drive( 0, 0, 0.00001, true);
+    // m_drivetrain.drive( .4, 0, 0.0, true);
   }
 
 
