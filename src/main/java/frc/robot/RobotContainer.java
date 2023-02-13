@@ -73,8 +73,8 @@ public class RobotContainer {
     m_driverControllerTrigger.x().onTrue(new CMD_PlaceSecondLevel(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
     m_driverControllerTrigger.a().onTrue(new CMD_PlaceGround(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine));
 
-    // m_driverControllerTrigger.b().onTrue(new CMD_ToggleIntakeState(m_intake));
-    m_driverControllerTrigger.b().onTrue(new AUTO_Test(m_trajectory));
+    m_driverControllerTrigger.b().onTrue(new CMD_ToggleIntakeState(m_intake));
+    // m_driverControllerTrigger.b().onTrue(new AUTO_Test(m_trajectory));
   }
 
     public void zeroGyroAngle() {
