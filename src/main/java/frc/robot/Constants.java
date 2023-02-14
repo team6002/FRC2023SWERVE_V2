@@ -82,7 +82,7 @@ public final class Constants {
         //motor assignments
         public static final int kFrontLeftDriveID = 14;
         public static final int kFrontRightDriveID = 5;
-        public static final int kBackLeftTurningID = 16;
+        public static final int kBackLeftDriveID = 15;
         public static final int kBackRightDriveID = 4;
 
         public static final boolean kFrontLeftDriveMotorInverted = false;
@@ -92,8 +92,8 @@ public final class Constants {
 
         public static final int kFrontLeftTurningID = 13;            
         public static final int kFrontRightTurningID = 6;
+        public static final int kBackLeftTurningID = 16;
         public static final int kBackRightTurningID = 3;
-        public static final int kBackLeftDriveID = 15;
 
         public static final int kFrontLeftDriveAnalogPort = 6;
         public static final int kFrontRightDriveAnalogPort = 7;

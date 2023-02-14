@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.Constants.ElbowConstants;
+import frc.robot.Constants.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;
@@ -57,7 +57,7 @@ public class RobotContainer {
   boolean pressed = false;
   private void configureButtonBindings() {
 
-    // m_driverControllerTrigger.back().onTrue(new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp));
+    m_driverControllerTrigger.back().onTrue(new CMD_ElbowSetPosition(m_elbow, ElbowConstants.kElbowUp));
 
 
     // m_driverControllerTrigger.y().onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));

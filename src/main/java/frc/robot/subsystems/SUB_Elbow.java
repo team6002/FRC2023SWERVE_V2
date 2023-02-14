@@ -35,7 +35,8 @@ public class SUB_Elbow extends SubsystemBase {
         m_elbowMotorPIDController.setD(ElbowConstants.kElbowD,1);
         m_elbowMotorPIDController.setFF(ElbowConstants.kElbowF,1);
         m_elbowMotorPIDController.setFeedbackDevice(m_elbowEncoder);
-        m_elbowMotor.setIdleMode(IdleMode.kBrake);
+        // m_elbowMotor.setIdleMode(IdleMode.kBrake);
+        m_elbowMotor.setIdleMode(IdleMode.kCoast);
         m_elbowMotorPIDController.setPositionPIDWrappingEnabled(false);
         m_elbowMotorPIDController.setOutputRange(-1, 1, 1);
         m_elbowMotorPIDController.setSmartMotionMaxVelocity(10, 1);
