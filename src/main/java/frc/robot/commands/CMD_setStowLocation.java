@@ -5,24 +5,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.SUB_Intake;
+import frc.robot.GlobalVariables;
 
-public class CMD_DropItem extends CommandBase {
-  /** Creates a new CMD_DropItem. */
-  SUB_Intake m_intake;
-  public CMD_DropItem(SUB_Intake p_Intake) {
-    m_intake = p_Intake;
+public class CMD_setStowLocation extends CommandBase {
+  /** Creates a new CMD_setStowLocation. */
+  GlobalVariables m_variables;
+  int m_stowLocation;
+  public CMD_setStowLocation(GlobalVariables p_variables, int p_stowLocation) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_variables = p_variables;
+    m_stowLocation = p_stowLocation;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (m_intake.getIntakeState()){
-      m_intake.setIntakeReverse();
-    }else {
-      m_intake.setIntakeForward();
-    }
+    m_variables.setStowLocation(m_stowLocation);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

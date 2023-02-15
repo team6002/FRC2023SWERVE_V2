@@ -174,6 +174,8 @@ public final class Constants {
         //intake currents
         public static final double kIntakeCurrent = 35;
         public static final double kHoldCurrent = 5;
+
+
       }
 
       public static final class ElevatorConstants{
@@ -181,39 +183,58 @@ public final class Constants {
         public static final double kElevatorP = 0;
         public static final double kElevatorI = 0;
         public static final double kElevatorD = 0.;
-        public static final double kElevatorF = 0.016;
-        public static final double kElevatorForward = .5;
+        public static final double kElevatorF = 0.013;
         public static final double kElevatorOffset = -.487;
         public static final double kPowerLimit = .2;
-        public static final double kElevatorMax = 56;
-        public static final double kElevatorShelf = 53;
-        public static final double kElevatorThirdLevel = 53;
+        public static final double kElevatorMax = 50;
+        public static final double kElevatorShelf = 50;
+        public static final double kElevatorThirdLevel = 50;
         public static final double kElevatorSecondLevel = 30;  
         public static final double kElevatorHome = 0;
         public static final double kElevatorStow = 8;
         public static final double kElevatorPrep = 23;//Position for safely moving elbow to score
+
+     
+
       }
 
       public static final class ElbowConstants{
         public static final int kElbowMotorCanID = 11;
         public static final double kElbowUp = 180;// about 90 degrees up
         public static final double kElbowForwards = 260;// stright forwards
-        public static final double kElbowBackwards = 100;// straight back
-        public static final double kElbowP = .0065;//.0075
+        public static final double kElbowBackwards = 96;// straight back
+        public static final double kElbowP = .00725;//.0075
         public static final double kElbowI = 0;
-        public static final double kElbowD = 0;
-        public static final double kElbowF = 0.000445;
+        public static final double kElbowD = 0.001;
+        public static final double kElbowF = 0.0006;
         public static final double kElbowStow = 205;
-        public static final double kElbowLift = 185;
+        public static final double kElbowSaftey = 200;
+        public static final double kElbowLift = 180
+        ;
       }
 
       public static final class WristConstants{
-        public static final double kWristP = 0.04;
+        public static final double kWristP = 0.00285;
         public static final double kWristI = 0;
-        public static final double kWristD = 0;
-        public static final double kWristF = 0.05;
+        public static final double kWristD = 0.002;
+        public static final double kWristF = 0.0;
         public static final int kWristMotorCanID = 10;
-        public static final double kWristGround = 90;//back
-        public static final double kWristShelf = 275;//front
+        public static final double kWristGround = 88;//back
+        public static final double kWristShelf = 272;//front
+      }
+
+      public static final class GlobalConstants{
+        public static final int kPickGroundMode = 0;
+        public static final int kPickShelfMode = 1;
+
+        public static final int kStowGroundMode = 0;
+        public static final int kStowShelfMode = 1;
+
+        public static final int kElevator1stLevel = 1;
+        public static final int kElevator2ndLevel = 2;
+        public static final int kElevator3rdLevel = 3;
+
+        public static final boolean kConeMode = true;
+        public static final boolean kCubeMode = false;
       }
     }

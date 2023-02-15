@@ -175,8 +175,8 @@ public class SwerveModule {
     // SmartDashboard.putNumber(m_moduleChannelStr+"DesiredAngle", m_optimizedDesiredState);
     // SmartDashboard.putNumber(m_moduleChannelStr+"AbsoluteAngle", m_turningEncoder.getPosition());
     // SmartDashboard.putNumber(m_moduleChannelStr+"AbsoluteAngleinDegrees", Math.toDegrees(m_turningEncoder.getPosition()));
-    SmartDashboard.putNumber(m_moduleChannelStr+"DesiredSpeed", m_optimizedDesiredSpeed);
-    SmartDashboard.putNumber(m_moduleChannelStr+"MeasuredSpeed", m_drivingEncoder.getVelocity());
+    // SmartDashboard.putNumber(m_moduleChannelStr+"DesiredSpeed", m_optimizedDesiredSpeed);
+    // SmartDashboard.putNumber(m_moduleChannelStr+"MeasuredSpeed", m_drivingEncoder.getVelocity());
     // SmartDashboard.putNumber(m_moduleChannelStr+"DistanceTravled", m_drivingEncoder.getPosition());
     }
 }

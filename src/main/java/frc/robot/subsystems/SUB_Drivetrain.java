@@ -104,37 +104,7 @@ public class SUB_Drivetrain extends SubsystemBase {
         Rotation2d.fromDegrees(m_navx.getAngle()),
         getSwervePosition());
         
-        if(m_finiteStateMachine.getState() == RobotState.BALANCING){
-          if(Math.abs(getPitch()) < 5){
-              m_blinkin.set(BlinkinConstants.kGreen);
-              balanced = true;
-              //drive stop
-          }else if(getPitch() > 30){
-            m_blinkin.setBackFar();
-            balanced = false;
-            //drive forward
-          }else if(getPitch() > 15){
-            m_blinkin.setBack();
-            balanced = false;
-            //drive forward slowly
-          }else if(getPitch() < -30){
-            m_blinkin.setFrontFar();
-            balanced = false;
-            //drive back slowly
-          }else if(getPitch() < -15){
-            m_blinkin.setFront();
-            balanced = false;
-            //drive back
-          }
-          
-          if(balanced == true) timer +=.02;
-          else timer = 0;
-
-          if(timer >= 2){
-            m_blinkin.setCelebrate();
-            timer = 2;
-        }
-      }
+    
      relativeBotpose = m_LimeLight.getRelativePosition(m_LimeLight.getTargetID());
 
 

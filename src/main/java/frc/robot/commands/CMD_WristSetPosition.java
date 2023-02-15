@@ -9,12 +9,10 @@ import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Wrist;
 
 public class CMD_WristSetPosition extends CommandBase {
-  SUB_Elbow m_elbow;
   SUB_Wrist m_wrist;
   double m_position;
 
-  public CMD_WristSetPosition(SUB_Elbow p_elbow, SUB_Wrist p_wrist, double p_position) {
-    m_elbow = p_elbow;
+  public CMD_WristSetPosition(SUB_Wrist p_wrist, double p_position) {
     m_wrist = p_wrist;
     m_position = p_position;
   }

@@ -24,7 +24,6 @@ public class SUB_Intake extends SubsystemBase {
     private final SUB_FiniteStateMachine m_finiteStateMachine;
     private final SUB_Blinkin m_blinkin;
     private final SUB_LimeLight m_limeLight;
-    private boolean m_intakeState = true;// true for cone mode, false for cube mode
   /** Creates a new SUB_Intake. */
   public SUB_Intake(SUB_FiniteStateMachine p_finiteStateMachine, SUB_Blinkin p_blinkin, SUB_LimeLight p_limeLight) {
     m_intakeMotor = new CANSparkMax(IntakeConstants.kIntakeMotorCanID, MotorType.kBrushless);
@@ -69,54 +68,12 @@ public class SUB_Intake extends SubsystemBase {
     m_intakeMotor.set(speed);
   }
 
-  public void setIntakeState(boolean p_state){
-    m_intakeState = p_state;
-  }
 
-  public boolean getIntakeState(){
-    return m_intakeState;
-  }
 
   @Override
   public void periodic(){
     // if we have a game piece, make the led strip sky blue colored
-    if(m_finiteStateMachine.getState() != RobotState.SCORING || m_finiteStateMachine.getState() != RobotState.BALANCING){
-      if(m_intakeState == true){
-        if(m_finiteStateMachine.getState() == RobotState.INTAKING/* && getSensor()*/){
-          m_blinkin.set(BlinkinConstants.kColor1Chaser);
-        }else{
-          m_blinkin.set(BlinkinConstants.kYellow);
-        }
-      }else{
-        if(m_finiteStateMachine.getState() == RobotState.INTAKING/* && getSensor()*/){
-          m_blinkin.set(BlinkinConstants.kColor2Chaser);
-        }else{
-          m_blinkin.set(BlinkinConstants.kPurple);
-        }
-      }
-    }
-
-    if(m_finiteStateMachine.getState() == RobotState.SCORING){
-      if(m_intakeState == true){
-        if(m_limeLight.hasTarget()){
-            m_blinkin.set(BlinkinConstants.kYellow);
-          }else{
-            m_blinkin.set(BlinkinConstants.kColor1Blink);
-          }
-        }else{
-          if(m_limeLight.hasTarget()){
-            m_blinkin.set(BlinkinConstants.kColor2Chaser);
-          }else{
-            m_blinkin.set(BlinkinConstants.kPurple);
-          }
-        }
-    }
-
-    // if(m_finiteStateMachine.getState() == RobotState.INTAKING && getSensor()){
-    //   m_finiteStateMachine.setState(RobotState.INTAKED);
-    // }
-
+    
     SmartDashboard.putNumber("Amps", m_intakeMotor.getOutputCurrent());
-    SmartDashboard.putBoolean("intake state", m_intakeState);
   }
 }

@@ -7,27 +7,31 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.SUB_Intake;
+import frc.robot.GlobalVariables;
+import frc.robot.Constants.GlobalConstants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.SUB_FiniteStateMachine;
 
 public class CMD_IntakeDrop extends CommandBase {
   SUB_Intake m_intake;
   SUB_FiniteStateMachine m_finiteStateMachine;
+  GlobalVariables m_variables;
 
 
   public CMD_IntakeDrop(
 
     SUB_Intake p_intake,
-    SUB_FiniteStateMachine p_finiteStateMachine
+    GlobalVariables p_variables
+
     ){
     m_intake = p_intake;
-    m_finiteStateMachine = p_finiteStateMachine;
+    m_variables = p_variables;
   }
 
   @Override
   public void initialize() {    
     m_intake.setIntakeCurrent();
-    if(m_intake.getIntakeState() == false){
+    if(m_variables.getIntakeState() == GlobalConstants.kCubeMode){
       m_intake.setPower(IntakeConstants.kIntakeDrop);
     }else{
       m_intake.setPower(-IntakeConstants.kIntakeDrop);
