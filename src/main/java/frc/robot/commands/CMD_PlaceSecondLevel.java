@@ -37,6 +37,7 @@ public class CMD_PlaceSecondLevel extends SequentialCommandGroup {
     m_elbow = p_elbow;
     m_wrist = p_wrist;
     m_finiteStateMachine = p_finiteStatemachine;
+    m_variables = p_variables;
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addRequirements(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine);

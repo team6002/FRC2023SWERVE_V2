@@ -68,12 +68,13 @@ public class SUB_Intake extends SubsystemBase {
     m_intakeMotor.set(speed);
   }
 
-
+  public double getCurrent(){
+    return m_intakeMotor.getOutputCurrent();
+  }
 
   @Override
   public void periodic(){
     // if we have a game piece, make the led strip sky blue colored
-    
     SmartDashboard.putNumber("Amps", m_intakeMotor.getOutputCurrent());
   }
 }

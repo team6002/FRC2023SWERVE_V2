@@ -38,7 +38,7 @@ public class SUB_Elbow extends SubsystemBase {
         // m_elbowMotor.setIdleMode(IdleMode.kBrake);
         m_elbowMotor.setIdleMode(IdleMode.kCoast);
         m_elbowMotorPIDController.setPositionPIDWrappingEnabled(false);
-        m_elbowMotorPIDController.setOutputRange(-1, 1, 1);
+        m_elbowMotorPIDController.setOutputRange(ElbowConstants.kElbowMinOutput, ElbowConstants.kElbowMaxOutput, 1);
         m_elbowMotorPIDController.setSmartMotionMaxVelocity(10, 1);
         m_elbowMotorPIDController.setSmartMotionMinOutputVelocity(-0, 1);
         m_elbowMotorPIDController.setSmartMotionMaxAccel(10, 1);
@@ -94,7 +94,8 @@ public class SUB_Elbow extends SubsystemBase {
     double m_I = ElbowConstants.kElbowI;
     double m_D = ElbowConstants.kElbowD;
     double m_F = ElbowConstants.kElbowF;
-        
+    double m_minOutput = 0;
+    double m_maxOutput = 0;
     public void telemetry(){
 
       SmartDashboard.putNumber("elbow position", m_elbowEncoder.getPosition());
@@ -104,18 +105,23 @@ public class SUB_Elbow extends SubsystemBase {
       m_I = SmartDashboard.getNumber("Elbow I", m_I);
       m_D = SmartDashboard.getNumber("Elbow D", m_D);
       m_F = SmartDashboard.getNumber("Elbow F", m_F);
+      m_minOutput = SmartDashboard.getNumber("Min Elbow Output", m_minOutput);
+      m_maxOutput = SmartDashboard.getNumber("Max Elbow Output", m_maxOutput);
         // m_wantedPosition = SmartDashboard.getNumber("wantedPosition", m_wantedPosition);
 
       SmartDashboard.putNumber("Elbow P", m_P);
       SmartDashboard.putNumber("Elbow I", m_I);
       SmartDashboard.putNumber("Elbow D", m_D);
       SmartDashboard.putNumber("Elbow F", m_F);
+      SmartDashboard.putNumber("Min Elbow Output", m_minOutput);
+      SmartDashboard.putNumber("Max Elbow Output", m_maxOutput);
       // SmartDashboard.putNumber("wantedPosition", m_wantedPosition);
     
       m_elbowMotorPIDController.setP(m_P,1);
       m_elbowMotorPIDController.setI(m_I,1);
       m_elbowMotorPIDController.setD(m_D,1);
       m_elbowMotorPIDController.setFF(Math.cos(Units.degreesToRadians(m_wantedPosition-90))*m_F,1);
+      m_elbowMotorPIDController.setOutputRange(m_minOutput, m_maxOutput, 1);
       // m_elbowMotorPIDController.setReference(m_wantedPosition, ControlType.kPosition, 1);
 
       // SmartDashboard.putNumber("velocity", m_elbowEncoder.getVelocity());

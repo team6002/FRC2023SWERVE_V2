@@ -30,6 +30,6 @@ public class CMD_Stow extends SequentialCommandGroup {
       ),
       new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
       new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorStow),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStow));
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStowForwards));
   }
 }

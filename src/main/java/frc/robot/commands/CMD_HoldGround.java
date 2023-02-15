@@ -31,10 +31,9 @@ public class CMD_HoldGround extends SequentialCommandGroup {
       new ParallelCommandGroup(
         new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
         new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorStow),
-        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
-        new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf)
-      ),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStow)
+        new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf),
+        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStowForwards)
+      )
     );
   }
 }

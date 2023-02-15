@@ -33,7 +33,10 @@ public class CMD_IntakeGround extends SequentialCommandGroup {
         new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
         new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowBackwards)
       ),
-      new CMD_IntakeOn(p_intake, p_variables)
+      new CMD_IntakeOn(p_intake, p_variables),
+      new CMD_IntakeCheck(p_intake),
+      new CMD_IntakeHold(p_intake, p_variables),
+      new CMD_HoldGround(p_intake, p_elbow, p_elevator, p_wrist, p_finiteStamchine, p_variables)
     );
   }
 }
