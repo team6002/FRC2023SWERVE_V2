@@ -15,7 +15,7 @@ public class CMD_IntakeCheck extends CommandBase {
   public CMD_IntakeCheck(SUB_Intake p_intake) {
     m_intake = p_intake;
     // Use addRequirements() here to declare subsystem dependencies.
-
+    addRequirements(m_intake);
   }
 
   // Called when the command is initially scheduled.

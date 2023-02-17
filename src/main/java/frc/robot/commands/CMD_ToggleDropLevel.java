@@ -5,21 +5,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.SUB_Elevator;
+import frc.robot.GlobalVariables;
+import frc.robot.Constants.GlobalConstants;
 
-public class CMD_ElevatorCheck extends CommandBase {
-  /** Creates a new CMD_ArmCheck. */
-  SUB_Elevator m_arm;
-  double m_wantedPosition;
-  public CMD_ElevatorCheck(SUB_Elevator p_arm, double p_wantedPosition) {
-    m_arm = p_arm;
-    m_wantedPosition = p_wantedPosition;
+public class CMD_ToggleDropLevel extends CommandBase {
+  /** Creates a new CMD_ToggleDropLevel. */
+  GlobalVariables m_variables;
+  public CMD_ToggleDropLevel(GlobalVariables p_variables) {
+    m_variables = p_variables;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    if (m_variables.getDropLevel() == GlobalConstants.kElevator3rdLevel){
+      m_variables.setDropLevel(GlobalConstants.kElevator1stLevel);
+    }else m_variables.setDropLevel(m_variables.getDropLevel() + 1);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -32,9 +35,6 @@ public class CMD_ElevatorCheck extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_arm.getPosition() >= m_wantedPosition - 3 && m_arm.getPosition() <= m_wantedPosition + 3 ){
-      return true;
-    }
-    return false;
+    return true;
   }
 }

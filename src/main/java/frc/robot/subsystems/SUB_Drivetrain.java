@@ -103,18 +103,13 @@ public class SUB_Drivetrain extends SubsystemBase {
     m_odometry.update(
         Rotation2d.fromDegrees(m_navx.getAngle()),
         getSwervePosition());
-        
-    
-     relativeBotpose = m_LimeLight.getRelativePosition(m_LimeLight.getTargetID());
-
-
         telemetry();
   }
 
   public void telemetry(){
-        SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
-        SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
-        SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
+        // SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
+        // SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
+        // SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
   }
 
   /**

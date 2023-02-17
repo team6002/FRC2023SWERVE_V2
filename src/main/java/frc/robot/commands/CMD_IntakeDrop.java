@@ -18,23 +18,19 @@ public class CMD_IntakeDrop extends CommandBase {
   GlobalVariables m_variables;
 
 
-  public CMD_IntakeDrop(
-
-    SUB_Intake p_intake,
-    GlobalVariables p_variables
-
-    ){
+  public CMD_IntakeDrop(SUB_Intake p_intake, GlobalVariables p_variables){
     m_intake = p_intake;
     m_variables = p_variables;
+    addRequirements(m_intake);
   }
 
   @Override
   public void initialize() {    
     m_intake.setIntakeCurrent();
     if(m_variables.getIntakeState() == GlobalConstants.kCubeMode){
-      m_intake.setPower(IntakeConstants.kIntakeDrop);
-    }else{
       m_intake.setPower(-IntakeConstants.kIntakeDrop);
+    }else{
+      m_intake.setPower(IntakeConstants.kIntakeDrop);
     }
   }
 

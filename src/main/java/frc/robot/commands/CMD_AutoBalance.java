@@ -18,6 +18,7 @@ public class CMD_AutoBalance extends CommandBase {
     m_finiteStateMachine = p_finiteStateMachine;
     m_isFinished = false;
     m_finiteStateMachine.setState(RobotState.BALANCING);
+    addRequirements(m_drivetrain, m_finiteStateMachine);
   }
 
   @Override

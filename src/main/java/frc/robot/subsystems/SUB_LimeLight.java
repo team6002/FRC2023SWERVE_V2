@@ -53,7 +53,7 @@ public class SUB_LimeLight extends SubsystemBase {
         m_blinkin.setHasNoTarget();
       }
     }
-    telemetry();
+    // telemetry();
   }
 
   public void telemetry(){
@@ -138,38 +138,5 @@ public class SUB_LimeLight extends SubsystemBase {
     wanted_pitch = p_wanted_pitch;
   }
 
-  public double[] getRelativePosition(double targetID){
-    if(targetID == 1){
-      double[] relativePos = {getTargetX() + target1[0], getTargetY() + target1[1], getTargetYaw() + target1[2]};
-      return relativePos;
-    }
-    else if(targetID == 2){
-      double[] relativePos = {getTargetX() + target2[0], getTargetY() + target2[1], getTargetYaw() + target2[2]};
-      return relativePos;
-    }
-    if(targetID == 3){
-      double[] relativePos = {getTargetX() + target3[0], getTargetY() + target3[1], getTargetYaw() + target3[2]};
-      return relativePos;
-    }
-    else if(targetID == 4){
-      double[] relativePos = {getTargetX() + target4[0], getTargetY() + target4[1], getTargetYaw() + target4[2]};
-      return relativePos;
-    }
-    if(targetID == 5){
-      double[] relativePos = {getTargetX() + target6[0], getTargetY() + target6[1], getTargetYaw() + target5[2]};
-      return relativePos;
-    }
-    else if(targetID == 6){
-      double[] relativePos = {getTargetX() + target7[0], getTargetY() + target7[1], getTargetYaw() + target7[2]};
-      return relativePos;
-    }
-    if(targetID == 7){
-      double[] relativePos = {getTargetX() + target8[0], getTargetY() + target8[1], getTargetYaw() + target8[2]};
-      return relativePos;
-    }
-    else{
-      double[] relativePos = {getTargetX() + target1[0], getTargetY() + target1[1], getTargetYaw() + target1[2]};
-      return relativePos;
-    }
-  }
+  
 }

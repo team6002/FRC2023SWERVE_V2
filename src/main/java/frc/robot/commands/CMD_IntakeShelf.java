@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.GlobalVariables;
 import frc.robot.Constants.ElbowConstants;
 import frc.robot.Constants.ElevatorConstants;
+import frc.robot.Constants.WristConstants;
 import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Elevator;
 import frc.robot.subsystems.SUB_FiniteStateMachine;
@@ -23,19 +24,23 @@ public class CMD_IntakeShelf extends SequentialCommandGroup {
   public CMD_IntakeShelf(SUB_Elbow p_elbow, SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Wrist p_wrist,
    SUB_FiniteStateMachine p_finiteStateMachine, GlobalVariables p_variables
    ) {
-    addRequirements(p_elbow, p_elevator, p_wrist, p_wrist);
     addCommands(
       new CMD_setState(p_finiteStateMachine, RobotState.INTAKE),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowLift),//ground position
-      new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorPrep),
-      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorPrep),
+      new ParallelCommandGroup(
+        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),//ground position
+        new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorPrep)
+      ),
       new ParallelCommandGroup(
         new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowForwards),
         new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorShelf),
-        new CMD_WristFlip(p_wrist, p_elbow, 0)
+        new SequentialCommandGroup(
+          new CMD_CheckWristSafe(p_elbow, p_elevator),
+          new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf)
+        )
       ),
-      new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorShelf),
-      new CMD_IntakeOn(p_intake, p_variables)
+      new CMD_IntakeOn(p_intake, p_variables),
+      new CMD_IntakeCheck(p_intake),
+      new CMD_HoldShelf(p_intake, p_elbow, p_elevator, p_wrist, p_finiteStateMachine, p_variables)
     );
   }
 }

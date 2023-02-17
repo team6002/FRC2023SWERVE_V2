@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SUB_Drivetrain;
 import frc.robot.subsystems.SUB_LimeLight;
@@ -41,6 +40,7 @@ public class CMD_DriveAlignPosition extends CommandBase {
     x_target = p_x;
     y_target = p_y;
     yaw_target = P_yaw;
+    addRequirements(m_drivetrain);
   }
 
   @Override

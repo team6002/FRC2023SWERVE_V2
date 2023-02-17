@@ -37,7 +37,6 @@ public class SUB_Elevator extends SubsystemBase {
       m_elevatorMotorPIDController.setPositionPIDWrappingEnabled(false);
       m_elevatorMotorPIDController.setOutputRange(-1, 1, 1);
       m_elevatorMotorPIDController.setSmartMotionMaxVelocity(40, 1);
-      m_elevatorMotorPIDController.setSmartMotionMinOutputVelocity(0, 1);
       m_elevatorMotorPIDController.setSmartMotionMaxAccel(40, 1);
       m_elevatorMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
       m_elevatorMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);
@@ -75,10 +74,10 @@ public class SUB_Elevator extends SubsystemBase {
     m_elevatorMotor.set(p_power);
   }
   
-  double m_P = 0;//elevatorConstants.kelevatorP;
-  double m_I = 0;//elevatorConstants.kelevatorI;
-  double m_D = 0;//elevatorConstants.kelevatorD;
-  double m_F = 0;//elevatorConstants.kelevatorF;\
+  // double m_P = 0;//elevatorConstants.kelevatorP;
+  // double m_I = 0;//elevatorConstants.kelevatorI;
+  // double m_D = 0;//elevatorConstants.kelevatorD;
+  // double m_F = 0;//elevatorConstants.kelevatorF;
   double m_wantedPosition = 0;
   public void telemetry(){
     SmartDashboard.putNumber("elevator Position", m_elevatorEncoder.getPosition());

@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SUB_Drivetrain;
 import frc.robot.subsystems.SUB_LimeLight;
@@ -33,6 +32,7 @@ public class CMD_DriveAlignTag extends CommandBase {
     yaw_p = .0025;
     yaw_f = 0.05;
     timer = 0;
+    addRequirements(m_drivetrain, m_limeLight);
   }
 
   @Override

@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.SUB_Elbow;
 import frc.robot.subsystems.SUB_Wrist;
 
 public class CMD_WristSetPosition extends CommandBase {
@@ -15,6 +14,7 @@ public class CMD_WristSetPosition extends CommandBase {
   public CMD_WristSetPosition(SUB_Wrist p_wrist, double p_position) {
     m_wrist = p_wrist;
     m_position = p_position;
+    addRequirements(m_wrist);
   }
 
   @Override

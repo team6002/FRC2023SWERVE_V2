@@ -24,14 +24,15 @@ public class CMD_HoldGround extends SequentialCommandGroup {
   public CMD_HoldGround(SUB_Intake p_intake, SUB_Elbow p_elbow, SUB_Elevator p_elevator, SUB_Wrist p_wrist,
     SUB_FiniteStateMachine p_finiteStateMachine, GlobalVariables p_variables
     ) {
-    addRequirements(p_intake, p_elbow, p_elevator, p_wrist);
     addCommands(
       new CMD_setState(p_finiteStateMachine, RobotState.STOW),
       new CMD_IntakeHold(p_intake, p_variables),
       new ParallelCommandGroup(
         new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
-        new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorStow),
-        new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf),
+        new SequentialCommandGroup(
+          new CMD_CheckWristSafe(p_elbow, p_elevator),
+          new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf)
+        ),
         new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStowForwards)
       )
     );

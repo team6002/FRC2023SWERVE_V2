@@ -25,10 +25,10 @@ public class GlobalVariables extends SubsystemBase {
     return m_intakeState;
   }
 
-  public void setElevatorLevel(int p_level){
+  public void setDropLevel(int p_level){
     m_dropLevel = p_level;
   }
-  public int getElevatorLevel(){
+  public int getDropLevel(){
     return m_dropLevel;
   }
 

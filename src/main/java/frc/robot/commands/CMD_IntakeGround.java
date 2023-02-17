@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.GlobalVariables;
@@ -23,14 +24,14 @@ import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;
 public class CMD_IntakeGround extends SequentialCommandGroup {
   public CMD_IntakeGround(SUB_Elbow p_elbow, SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Wrist p_wrist,
    SUB_FiniteStateMachine p_finiteStamchine, GlobalVariables p_variables) {
-    addRequirements(p_elbow, p_elevator, p_intake, p_wrist);
     addCommands(
       new CMD_setState(p_finiteStamchine, RobotState.INTAKE),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
       new ParallelCommandGroup(
-        new CMD_WristSetPosition(p_wrist, WristConstants.kWristGround),
+        new SequentialCommandGroup(
+          new CMD_CheckWristSafe(p_elbow, p_elevator),
+          new CMD_WristSetPosition(p_wrist, WristConstants.kWristGround)
+        ),     
         new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorHome),
-        new CMD_ElevatorCheck(p_elevator, ElevatorConstants.kElevatorHome),
         new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowBackwards)
       ),
       new CMD_IntakeOn(p_intake, p_variables),
