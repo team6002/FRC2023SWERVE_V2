@@ -175,7 +175,7 @@ public final class Constants {
         public static final double kIntakeCurrent = 35;
         public static final double kHoldCurrent = 5;
 
-        public static final double kIntakeConeDetectedCurrent = 42;
+        public static final double kIntakeConeDetectedCurrent = 45;
 
       }
 
@@ -190,8 +190,8 @@ public final class Constants {
         public static final double kElevatorMax = 50;
         public static final double kElevatorShelf = 50;
         public static final double kElevatorFirstLevel = 23;// for placeing forwards
-        public static final double kElevatorSecondLevel = 30;  
-        public static final double kElevatorThirdLevel = 50;
+        public static final double kElevatorSecondLevel = 27;  
+        public static final double kElevatorThirdLevel = 47;
         public static final double kElevatorHome = 0;
         public static final double kElevatorStow = 5;
         public static final double kElevatorPrep = 23;//Position for safely moving elbow to score
@@ -209,20 +209,20 @@ public final class Constants {
         public static final double kElbowF = 0.0006;
         public static final double kElbowMinOutput = -0.25;
         public static final double kElbowMaxOutput = 0.25;
-        public static final double kElbowStowBackwards = 205;//when wrist faces backwards
+        public static final double kElbowStowBackwards = 220;//when wrist faces backwards
         public static final double kElbowStowForwards = 218;// when wrist faces forwards
         public static final double kElbowSaftey = 190;//maximum safe value for rotating wrist
-        public static final double kElbowLift = 200;
-        ;
+        public static final double kElbowLift = 190;
+        public static final double kElbowPlaceBack = 120; // for placing on ground
       }
 
       public static final class WristConstants{
+        public static final double kWristMaxOutput = 0.25;
         public static final double kWristP = 0.0033;
         public static final double kWristI = 0;
         public static final double kWristD = 0.002;
         public static final double kWristF = 0.0;
         public static final double kWristMinOutput = -0.25;
-        public static final double kWristMaxOutput = 0.25;
         public static final int kWristMotorCanID = 10;
         public static final double kWristGround = 89;//back
         public static final double kWristShelf = 272;//front

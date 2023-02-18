@@ -15,7 +15,7 @@ public class CMD_IntakeHold extends CommandBase {
   public CMD_IntakeHold(SUB_Intake p_intake, GlobalVariables p_variables) {
     m_intake = p_intake;
     m_variables = p_variables;
-    addRequirements(m_intake);
+    // addRequirements(m_intake);
   }
 
   @Override

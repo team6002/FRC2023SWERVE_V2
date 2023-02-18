@@ -35,7 +35,7 @@ public class RobotContainer {
   public final SUB_Drivetrain m_robotDrive = new SUB_Drivetrain(m_blinkin, m_finiteStateMachine, m_limeLight);
   private final SUB_Intake m_intake = new SUB_Intake();
   private final AUTO_Trajectory m_trajectory = new AUTO_Trajectory(m_robotDrive);
-  private final BooleanSupplier IntakeToggle = () -> m_finiteStateMachine.getState() == RobotState.INTAKE;
+  private final BooleanSupplier IntakeToggle = () -> m_variable.getPickMode() == 1;
   // The driver's controller
   XboxController m_operatorController = new XboxController(1);
   CommandXboxController m_driverControllerTrigger = new CommandXboxController(0);
@@ -62,12 +62,16 @@ public class RobotContainer {
     // m_driverControllerTrigger.x().onTrue(new CMD_DriveAlignLeft(m_robotDrive, m_limeLight));
     // m_driverControllerTrigger.b().onTrue(new CMD_DriveAlignRight(m_robotDrive, m_limeLight));
 
-    m_driverControllerTrigger.leftBumper().onTrue(new ConditionalCommand((new CMD_HoldShelf(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine, m_variable )),
-    new CMD_IntakeShelf(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine, m_variable), IntakeToggle));
-    m_driverControllerTrigger.rightBumper().onTrue(new ConditionalCommand((new CMD_HoldGround(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine, m_variable)),
-    new CMD_IntakeGround(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine, m_variable), IntakeToggle));
+    m_driverControllerTrigger.leftBumper().onTrue(new ConditionalCommand((
+      new CMD_IntakeShelf(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine, m_variable)
+        .until(m_driverControllerTrigger.back().onTrue(new CMD_HoldShelf(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine, m_variable)))),
+      new CMD_IntakeGround(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine, m_variable)
+        .until(m_driverControllerTrigger.back().onTrue(new CMD_HoldGround(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine, m_variable)))
+      ,IntakeToggle));
+    m_driverControllerTrigger.rightBumper().onTrue(new CMD_TogglePickMode(m_variable));
     
-    m_driverControllerTrigger.x().onTrue(new CMD_Place(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine, m_variable));
+    m_driverControllerTrigger.y().onTrue(new CMD_PlaceGround(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine, m_variable));
+    m_driverControllerTrigger.x().onTrue(new CMD_PlaceForwards(m_elevator, m_intake, m_elbow, m_wrist, m_finiteStateMachine, m_variable));
     m_driverControllerTrigger.a().onTrue(new CMD_ToggleDropLevel(m_variable));
 
     m_driverControllerTrigger.b().onTrue(new CMD_ToggleIntakeState(m_variable));

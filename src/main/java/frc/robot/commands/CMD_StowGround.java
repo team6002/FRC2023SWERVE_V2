@@ -19,21 +19,21 @@ import frc.robot.subsystems.SUB_FiniteStateMachine.RobotState;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class CMD_Stow extends SequentialCommandGroup {
-  public CMD_Stow(SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Elbow p_elbow, SUB_Wrist p_wrist, SUB_FiniteStateMachine p_finiteStateMachine) {
+public class CMD_StowGround extends SequentialCommandGroup {
+  public CMD_StowGround(SUB_Elevator p_elevator, SUB_Intake p_intake, SUB_Elbow p_elbow, SUB_Wrist p_wrist, SUB_FiniteStateMachine p_finiteStateMachine) {
 
     addCommands(
       new CMD_setState(p_finiteStateMachine, RobotState.STOW),
       new CMD_IntakeOff(p_intake),
       new ParallelCommandGroup(
         new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
-        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
         new SequentialCommandGroup(
           new CMD_CheckWristSafe(p_elbow, p_elevator),
-          new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf)
-        )
+          new CMD_WristSetPosition(p_wrist, WristConstants.kWristGround)
+        ),
+        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp)
       ),
-      new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
-      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStowForwards));
-  }
+      new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowStowBackwards)
+    );
+    }
 }

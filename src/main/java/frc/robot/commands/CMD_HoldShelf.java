@@ -30,7 +30,7 @@ public class CMD_HoldShelf extends SequentialCommandGroup {
       new CMD_IntakeHold(p_intake, p_variables),
       new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorPrep),
       new ParallelCommandGroup(
-        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowLift),
+        new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
         new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf)
       ),
       new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),

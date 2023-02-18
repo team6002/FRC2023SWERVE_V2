@@ -11,18 +11,21 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants.IntakeConstants;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SUB_Intake extends SubsystemBase {
     private final CANSparkMax m_intakeMotor;
     private final SparkMaxPIDController m_intakeMotorPIDController;
     private final DigitalInput m_sensor;
+    private boolean m_cubeDetected = false;
   /** Creates a new SUB_Intake. */
   public SUB_Intake() {
     m_intakeMotor = new CANSparkMax(IntakeConstants.kIntakeMotorCanID, MotorType.kBrushless);
     m_intakeMotorPIDController = m_intakeMotor.getPIDController();
     m_sensor = new DigitalInput(1);
     m_intakeMotor.setIdleMode(IdleMode.kBrake);
+    m_cubeDetected = false;
   }
 
   public void setIntakeForward(){
@@ -61,9 +64,15 @@ public class SUB_Intake extends SubsystemBase {
   public double getCurrent(){
     return m_intakeMotor.getOutputCurrent();
   }
-
+  //Note make sure to remove this when we get our commands intruptable
+  public void setCubeDetected(boolean p_detected){
+    m_cubeDetected = p_detected;
+  }
+  public boolean getCubeDetected(){
+    return m_cubeDetected;
+  }
   @Override
   public void periodic(){
-    // if we have a game piece, make the led strip sky blue colored
+    SmartDashboard.putBoolean("Detected", m_cubeDetected);
   }
 }
