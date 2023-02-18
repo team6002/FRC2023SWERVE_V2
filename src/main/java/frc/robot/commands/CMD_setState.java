@@ -14,6 +14,7 @@ public class CMD_setState extends CommandBase {
   public CMD_setState(SUB_FiniteStateMachine p_finiteStateMachine, RobotState p_state) {
     m_finiteStateMachine = p_finiteStateMachine;
     m_state = p_state;
+    addRequirements(m_finiteStateMachine);
   }
 
   @Override

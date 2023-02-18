@@ -21,9 +21,9 @@ public class CMD_DriveCommand extends CommandBase {
   double x = 0;           //variable for side to side movement
   double turn = 0;        //variable for turning movement
 
-  public CMD_DriveCommand(SUB_Drivetrain drivetrain, CommandXboxController m_driverControllerTrigger) {
-    this.m_drivetrain = drivetrain;
-    addRequirements(drivetrain);
+  public CMD_DriveCommand(SUB_Drivetrain m_drivetrain, CommandXboxController m_driverControllerTrigger) {
+    this.m_drivetrain = m_drivetrain;
+    addRequirements(m_drivetrain);
 
     this.controller = m_driverControllerTrigger;
   }

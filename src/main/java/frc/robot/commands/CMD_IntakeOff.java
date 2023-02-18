@@ -11,6 +11,7 @@ public class CMD_IntakeOff extends CommandBase {
   SUB_Intake m_intake;
   public CMD_IntakeOff(SUB_Intake p_intake) {
     m_intake = p_intake;
+    addRequirements(m_intake);
   }
 
   @Override

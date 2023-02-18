@@ -14,6 +14,7 @@ public class CMD_IntakeSetPower extends CommandBase {
   public CMD_IntakeSetPower(SUB_Intake p_intake, double speed) {
     m_intake = p_intake;
     m_speed = speed;
+    addRequirements(m_intake);
   }
 
   @Override

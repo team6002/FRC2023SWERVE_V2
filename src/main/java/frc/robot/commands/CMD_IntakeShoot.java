@@ -12,13 +12,13 @@ import frc.robot.Constants.GlobalConstants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.SUB_FiniteStateMachine;
 
-public class CMD_IntakeDrop extends CommandBase {
+public class CMD_IntakeShoot extends CommandBase {
   SUB_Intake m_intake;
   SUB_FiniteStateMachine m_finiteStateMachine;
   GlobalVariables m_variables;
 
 
-  public CMD_IntakeDrop(SUB_Intake p_intake, GlobalVariables p_variables){
+  public CMD_IntakeShoot(SUB_Intake p_intake, GlobalVariables p_variables){
     m_intake = p_intake;
     m_variables = p_variables;
     addRequirements(m_intake);
@@ -28,9 +28,9 @@ public class CMD_IntakeDrop extends CommandBase {
   public void initialize() {    
     m_intake.setIntakeCurrent();
     if(m_variables.getIntakeState() == GlobalConstants.kCubeMode){
-      m_intake.setPower(IntakeConstants.kIntakeDropCone);
+      m_intake.setPower(-IntakeConstants.kIntakeShoot);
     }else{
-      m_intake.setPower(IntakeConstants.kIntakeDropCube);
+      m_intake.setPower(IntakeConstants.kIntakeShoot);
     }
   }
 

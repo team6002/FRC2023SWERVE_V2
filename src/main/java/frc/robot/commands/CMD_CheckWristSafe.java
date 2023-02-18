@@ -6,24 +6,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SUB_Elbow;
+import frc.robot.subsystems.SUB_Elevator;
+import frc.robot.Constants.ElbowConstants;
+import frc.robot.Constants.ElevatorConstants;
 
-
-public class CMD_ElbowSetPosition extends CommandBase {
-    
+public class CMD_CheckWristSafe extends CommandBase {
   SUB_Elbow m_elbow;
-  double m_position;
-  double m_tolerance = 5;
-
-  public CMD_ElbowSetPosition(SUB_Elbow p_elbow, double p_position) {
+  SUB_Elevator m_elevator;
+  public CMD_CheckWristSafe(SUB_Elbow p_elbow, SUB_Elevator p_elevator) {
     m_elbow = p_elbow;
-    m_position = p_position;
-    addRequirements(m_elbow);
+    m_elevator = p_elevator;
   }
 
   @Override
-  public void initialize() {
-    m_elbow.setReference(m_position);
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {}
@@ -33,6 +29,6 @@ public class CMD_ElbowSetPosition extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return Math.abs(m_elbow.getPosition() - m_elbow.getElbowWantedPosition()) < m_tolerance;//checks to see if elbow is at the wanted position
+    return m_elevator.getPosition() > ElevatorConstants.kElevatorSafety || m_elbow.getPosition() < ElbowConstants.kElbowSaftey;
   }
 }

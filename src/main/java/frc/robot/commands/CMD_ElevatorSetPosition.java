@@ -9,15 +9,16 @@ import frc.robot.subsystems.SUB_Elevator;
 
 public class CMD_ElevatorSetPosition extends CommandBase {
   SUB_Elevator m_elevator;
-  double m_position;
-  public CMD_ElevatorSetPosition(SUB_Elevator p_elevator, double p_position) {
+  double m_wantedPosition;
+  public CMD_ElevatorSetPosition(SUB_Elevator p_elevator, double p_wantedPosition) {
     m_elevator = p_elevator;
-    m_position = p_position;
+    m_wantedPosition = p_wantedPosition;
+    addRequirements(m_elevator);
   }
 
   @Override
   public void initialize() {
-    m_elevator.setPosition(m_position);
+    m_elevator.setPosition(m_wantedPosition);
   }
 
   @Override
@@ -32,6 +33,9 @@ public class CMD_ElevatorSetPosition extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return true;
+    if (m_elevator.getPosition() >= m_wantedPosition - 3 && m_elevator.getPosition() <= m_wantedPosition + 3 ){
+      return true;
+    }
+    return false;
   }
 }

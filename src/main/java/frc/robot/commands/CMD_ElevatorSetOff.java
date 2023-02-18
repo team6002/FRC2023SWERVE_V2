@@ -11,6 +11,7 @@ public class CMD_ElevatorSetOff extends CommandBase {
   SUB_Elevator m_arm;
   public CMD_ElevatorSetOff(SUB_Elevator p_arm) {
     m_arm = p_arm;
+    addRequirements(m_arm);
   }
 
   @Override

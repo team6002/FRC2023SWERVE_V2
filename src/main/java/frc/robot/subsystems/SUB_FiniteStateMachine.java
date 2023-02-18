@@ -12,8 +12,8 @@ public class SUB_FiniteStateMachine extends SubsystemBase{
     public enum RobotState 
     {
         HOME,
-        INTAKING,
-        INTAKED,
+        INTAKE,
+        STOW,
         SCORING,
         BALANCING,
     }

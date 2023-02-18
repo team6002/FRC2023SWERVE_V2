@@ -5,19 +5,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.SUB_Intake;
+import frc.robot.GlobalVariables;
 
 public class CMD_IntakeSetState extends CommandBase {
-  SUB_Intake m_intake;
+  GlobalVariables m_variables;
   boolean m_intakeState;
-  public CMD_IntakeSetState(SUB_Intake p_intake, boolean p_intakeState) {
-    m_intake = p_intake;
+  public CMD_IntakeSetState(GlobalVariables p_variables, boolean p_intakeState) {
+    m_variables = p_variables;
     m_intakeState = p_intakeState;
   }
 
   @Override
   public void initialize() {
-    m_intake.setIntakeState(m_intakeState);
+    m_variables.setIntakeState(m_intakeState);
   }
 
   @Override

@@ -5,21 +5,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.GlobalVariables;
+import frc.robot.Constants.GlobalConstants;
 import frc.robot.subsystems.SUB_Intake;
 
 public class CMD_IntakeHold extends CommandBase {
   SUB_Intake m_intake;
-  public CMD_IntakeHold(SUB_Intake p_intake) {
+  GlobalVariables m_variables;
+  public CMD_IntakeHold(SUB_Intake p_intake, GlobalVariables p_variables) {
     m_intake = p_intake;
+    m_variables = p_variables;
+    // addRequirements(m_intake);
   }
 
   @Override
   public void initialize() {
     m_intake.setHoldCurrent();
-    if(m_intake.getIntakeState() == true){
-      m_intake.setPower(.07);    
+    if(m_variables.getIntakeState() == GlobalConstants.kConeMode){
+      m_intake.setPower(-.07);    
     }else{
-      m_intake.setPower(-.07);
+      m_intake.setPower(.07);
     }
 
   }

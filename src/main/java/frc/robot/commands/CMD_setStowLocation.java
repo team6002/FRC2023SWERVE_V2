@@ -6,29 +6,32 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.GlobalVariables;
-import frc.robot.Constants.GlobalConstants;
 
-public class CMD_ToggleIntakeState extends CommandBase {
+public class CMD_setStowLocation extends CommandBase {
+  /** Creates a new CMD_setStowLocation. */
   GlobalVariables m_variables;
-  public CMD_ToggleIntakeState(GlobalVariables p_variables) {
+  int m_stowLocation;
+  public CMD_setStowLocation(GlobalVariables p_variables, int p_stowLocation) {
+    // Use addRequirements() here to declare subsystem dependencies.
     m_variables = p_variables;
+    m_stowLocation = p_stowLocation;
   }
 
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(m_variables.getIntakeState() == GlobalConstants.kConeMode){
-      m_variables.setIntakeState(false);
-    }else{
-      m_variables.setIntakeState(true);
-    }
+    m_variables.setStowLocation(m_stowLocation);
   }
 
+  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {}
 
+  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
 
+  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return true;

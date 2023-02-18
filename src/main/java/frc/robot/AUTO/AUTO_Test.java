@@ -14,7 +14,7 @@ public class AUTO_Test extends SequentialCommandGroup {
 
     addCommands(
       new SequentialCommandGroup(
-        m_trajectory.driveTrajectory(m_trajectory.testTrajectory)
+        // m_trajectory.driveTrajectory(m_trajectory.testTrajectory)
         // new WaitCommand(1),
         // m_trajectory.driveTrajectory(m_trajectory.test2Trajectory)
 
