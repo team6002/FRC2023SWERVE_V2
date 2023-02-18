@@ -62,8 +62,8 @@ public class SwerveModule {
     // Apply position and velocity conversion factors for the driving encoder. The
     // native units for position and velocity are rotations and RPM, respectively,
     // but we want meters and meters per second to use with WPILib's swerve APIs.
-    m_drivingEncoder.setPositionConversionFactor(DriveConstants.kDriveEncoderPositionFactor/.77);
-    m_drivingEncoder.setVelocityConversionFactor(DriveConstants.kDriveEncoderVelocityFactor/.77);
+    m_drivingEncoder.setPositionConversionFactor(DriveConstants.kDriveEncoderPositionFactor);
+    m_drivingEncoder.setVelocityConversionFactor(DriveConstants.kDriveEncoderVelocityFactor);
 
     System.out.println("Vel Conversion Factor: " + DriveConstants.kDriveEncoderVelocityFactor);
     System.out.println("Pos Conversion Factor: " + DriveConstants.kDriveEncoderVelocityFactor);

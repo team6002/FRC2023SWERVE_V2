@@ -82,8 +82,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_robotContainer.m_robotDrive.resetOdometry(m_reset);
-  //   m_autonomousCommand = new AUTO_Test(m_trajectory);
-  //   m_autonomousCommand.schedule();
+    m_autonomousCommand = new AUTO_Test(m_trajectory);
+    m_autonomousCommand.schedule();
   }
 
   /** This function is called periodically during autonomous. */
