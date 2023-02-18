@@ -36,7 +36,7 @@ public class SUB_Elevator extends SubsystemBase {
       m_elevatorMotor.setIdleMode(IdleMode.kCoast);
       m_elevatorMotorPIDController.setPositionPIDWrappingEnabled(false);
       m_elevatorMotorPIDController.setOutputRange(-1, 1, 1);
-      m_elevatorMotorPIDController.setSmartMotionMaxVelocity(40, 1);
+      m_elevatorMotorPIDController.setSmartMotionMaxVelocity(50, 1);
       m_elevatorMotorPIDController.setSmartMotionMaxAccel(40, 1);
       m_elevatorMotorPIDController.setSmartMotionAllowedClosedLoopError(1, 1);
       m_elevatorMotorPIDController.setSmartMotionAccelStrategy(SparkMaxPIDController.AccelStrategy.kTrapezoidal, 1);

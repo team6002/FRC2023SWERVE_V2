@@ -51,7 +51,7 @@ public class CMD_PlaceGround extends SequentialCommandGroup {
       new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowPlaceBack)
       ),
       new CMD_IntakeShoot(p_intake, p_variables),
-      new WaitCommand(1),
+      new WaitCommand(.5),
       new CMD_StowGround(p_elevator, p_intake, p_elbow, p_wrist, p_finiteStateMachine)
     );
   }

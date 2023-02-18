@@ -26,8 +26,8 @@ public class CMD_Stow extends SequentialCommandGroup {
       new CMD_setState(p_finiteStateMachine, RobotState.STOW),
       new CMD_IntakeOff(p_intake),
       new ParallelCommandGroup(
-        new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
         new CMD_ElbowSetPosition(p_elbow, ElbowConstants.kElbowUp),
+        new CMD_ElevatorSetPosition(p_elevator, ElevatorConstants.kElevatorStow),
         new SequentialCommandGroup(
           new CMD_CheckWristSafe(p_elbow, p_elevator),
           new CMD_WristSetPosition(p_wrist, WristConstants.kWristShelf)

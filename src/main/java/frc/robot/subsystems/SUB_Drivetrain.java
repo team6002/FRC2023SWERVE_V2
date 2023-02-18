@@ -107,9 +107,9 @@ public class SUB_Drivetrain extends SubsystemBase {
   }
 
   public void telemetry(){
-        // SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
-        // SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
-        // SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
+        SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
+        SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
+        SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
   }
 
   /**

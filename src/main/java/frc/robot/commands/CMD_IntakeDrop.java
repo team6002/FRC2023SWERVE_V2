@@ -28,9 +28,9 @@ public class CMD_IntakeDrop extends CommandBase {
   public void initialize() {    
     m_intake.setIntakeCurrent();
     if(m_variables.getIntakeState() == GlobalConstants.kCubeMode){
-      m_intake.setPower(-IntakeConstants.kIntakeDrop);
+      m_intake.setPower(IntakeConstants.kIntakeDropCone);
     }else{
-      m_intake.setPower(IntakeConstants.kIntakeDrop);
+      m_intake.setPower(IntakeConstants.kIntakeDropCube);
     }
   }
 

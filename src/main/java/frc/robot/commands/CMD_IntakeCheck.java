@@ -12,23 +12,36 @@ public class CMD_IntakeCheck extends CommandBase {
   /** Creates a new CMD_IntakeCheck. */
   SUB_Intake m_intake;
   boolean m_detected = false;
+  double m_timer = 0;
   public CMD_IntakeCheck(SUB_Intake p_intake) {
     m_intake = p_intake;
+    m_timer = 0;
     // Use addRequirements() here to declare subsystem dependencies.
     // addRequirements(m_intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_timer = 0;
+    m_detected = false;
+    m_intake.setCubeDetected(false);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
     if (m_intake.getCurrent() >= IntakeConstants.kIntakeConeDetectedCurrent){
-      m_detected = true;
-    }else 
+      if (m_timer == 10){
+        m_detected = true;
+      }else{
+        m_timer += 1;
+      }
+    }else{
     m_detected = false;
+    m_timer = 0;
+    }
   }
 
   // Called once the command ends or is interrupted.

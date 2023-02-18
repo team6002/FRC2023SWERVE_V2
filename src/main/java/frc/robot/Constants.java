@@ -155,8 +155,8 @@ public final class Constants {
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI / 4;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI / 4;
     
-        public static final double kPXController = 1;
-        public static final double kPYController = 1;
+        public static final double kPXController = 5;
+        public static final double kPYController = 5;
         public static final double kPThetaController = 1;
     
         // Constraint for the motion profilied robot angle controller
@@ -169,13 +169,14 @@ public final class Constants {
         public static final int kIntakeMotorCanID = 12;
         //intake powers
         public static final double kIntakeForwardPower = .7;
-        public static final double kIntakeDrop = 0.7;
+        public static final double kIntakeDropCone = -0.7;
+        public static final double kIntakeDropCube = 0.3;// the cubes are lighter than cones
         public static final double kIntakeShoot = 1;
         //intake currents
         public static final double kIntakeCurrent = 35;
         public static final double kHoldCurrent = 5;
 
-        public static final double kIntakeConeDetectedCurrent = 45;
+        public static final double kIntakeConeDetectedCurrent = 30;
 
       }
 
@@ -188,32 +189,32 @@ public final class Constants {
         public static final double kElevatorOffset = -.487;
         public static final double kPowerLimit = .2;
         public static final double kElevatorMax = 50;
-        public static final double kElevatorShelf = 50;
+        public static final double kElevatorShelf = 42;
         public static final double kElevatorFirstLevel = 23;// for placeing forwards
         public static final double kElevatorSecondLevel = 27;  
-        public static final double kElevatorThirdLevel = 47;
+        public static final double kElevatorThirdLevel = 43;
         public static final double kElevatorHome = 0;
         public static final double kElevatorStow = 5;
-        public static final double kElevatorPrep = 23;//Position for safely moving elbow to score
+        public static final double kElevatorPrep = 21;//Position for safely moving elbow to score
         public static final double kElevatorSafety = 15;//maximum value to check if moving wrist endagers robot
       }
 
       public static final class ElbowConstants{
         public static final int kElbowMotorCanID = 11;
-        public static final double kElbowUp = 180;// about 90 degrees up
+        public static final double kElbowUp = 175;// about 90 degrees up
         public static final double kElbowForwards = 260;// stright forwards
         public static final double kElbowBackwards = 97;// straight back
-        public static final double kElbowP = .00775;//.0075
+        public static final double kElbowP = .008;//.0075
         public static final double kElbowI = 0;
         public static final double kElbowD = 0.001;
         public static final double kElbowF = 0.0006;
         public static final double kElbowMinOutput = -0.25;
         public static final double kElbowMaxOutput = 0.25;
-        public static final double kElbowStowBackwards = 220;//when wrist faces backwards
+        public static final double kElbowStowBackwards = 222;//when wrist faces backwards
         public static final double kElbowStowForwards = 218;// when wrist faces forwards
         public static final double kElbowSaftey = 190;//maximum safe value for rotating wrist
         public static final double kElbowLift = 190;
-        public static final double kElbowPlaceBack = 120; // for placing on ground
+        public static final double kElbowPlaceBack = 110; // for placing on ground
       }
 
       public static final class WristConstants{
@@ -224,8 +225,8 @@ public final class Constants {
         public static final double kWristF = 0.0;
         public static final double kWristMinOutput = -0.25;
         public static final int kWristMotorCanID = 10;
-        public static final double kWristGround = 89;//back
-        public static final double kWristShelf = 272;//front
+        public static final double kWristGround = 85;//back
+        public static final double kWristShelf = 275;//front
       }
 
       public static final class GlobalConstants{
