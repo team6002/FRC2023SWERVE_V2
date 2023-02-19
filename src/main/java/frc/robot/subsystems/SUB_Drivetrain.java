@@ -26,10 +26,10 @@ public class SUB_Drivetrain extends SubsystemBase {
   SUB_Blinkin m_blinkin;
   SUB_LimeLight m_LimeLight;
   SUB_FiniteStateMachine m_finiteStateMachine;
-  public boolean balanced = false;
-  public double timer;
-  public int wantedHeight;//wanted position for droppoff, integer from 1-3, 1 is bottom, 3 is top
-  public int wantedLength;//wanted position for droppoff, integer from 1-3, 1 is far left, 3 is far right
+  public double m_cameraError = 0;
+  public double m_odometryUpdateCount = 0; //counts everytime we update odometery
+  // public int wantedHeight;//wanted position for droppoff, integer from 1-3, 1 is bottom, 3 is top
+  // public int wantedLength;//wanted position for droppoff, integer from 1-3, 1 is far left, 3 is far right
   public double[] relativeBotpose;
 
   private final SwerveModule m_frontLeft = new SwerveModule(
@@ -186,6 +186,8 @@ public class SUB_Drivetrain extends SubsystemBase {
     Pose2d p_wantedPose2d = new Pose2d(Units.inchesToMeters(X),Units.inchesToMeters(Y),Rotation2d.fromDegrees(Angle)); 
     m_odometry.resetPosition(m_navx.getRotation2d(), getSwervePosition(), p_wantedPose2d);
   }
+
+  
   /**
    * Sets the swerve ModuleStates.
    *
@@ -231,15 +233,15 @@ public class SUB_Drivetrain extends SubsystemBase {
     return m_navx.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
-  public void setWantedHeight(int p_height){
-    wantedHeight = p_height;
-  }
+  // public void setWantedHeight(int p_height){
+  //   wantedHeight = p_height;
+  // }
 
-  public void setWantedLength(int p_length){
-    wantedLength = p_length;
-  }
+  // public void setWantedLength(int p_length){
+  //   wantedLength = p_length;
+  // }
 
-  public int getWantedLength(){
-    return wantedLength;
-  }
+  // public int getWantedLength(){
+  //   return wantedLength;
+  // }
 }

@@ -58,7 +58,7 @@ public class RobotContainer {
     // m_driverControllerTrigger.y().onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));
     // m_driverControllerTrigger.x().onTrue(new CMD_DriveAlignLeft(m_robotDrive, m_limeLight));
     // m_driverControllerTrigger.b().onTrue(new CMD_DriveAlignRight(m_robotDrive, m_limeLight));
-
+    m_driverControllerTrigger.pov(90).onTrue(new CMD_DriveAlignTag(m_robotDrive, m_limeLight));
     m_driverControllerTrigger.leftBumper().onTrue(new ConditionalCommand((
       new CMD_IntakeShelf(m_elbow, m_elevator, m_intake, m_wrist, m_finiteStateMachine, m_variable)
         .until(m_driverControllerTrigger.back().onTrue(new CMD_HoldShelf(m_intake, m_elbow, m_elevator, m_wrist, m_finiteStateMachine, m_variable)))),

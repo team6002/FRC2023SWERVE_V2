@@ -168,7 +168,7 @@ public final class Constants {
       public static final class IntakeConstants{
         public static final int kIntakeMotorCanID = 12;
         //intake powers
-        public static final double kIntakeForwardPower = .7;
+        public static final double kIntakeForwardPower = .5;
         public static final double kIntakeDropCone = -0.7;
         public static final double kIntakeDropCube = 0.3;// the cubes are lighter than cones
         public static final double kIntakeShoot = 1;
@@ -194,6 +194,7 @@ public final class Constants {
         public static final double kElevatorSecondLevel = 27;  
         public static final double kElevatorThirdLevel = 43;
         public static final double kElevatorHome = 0;
+        public static final double kElevatorGround = 0;
         public static final double kElevatorStow = 5;
         public static final double kElevatorPrep = 21;//Position for safely moving elbow to score
         public static final double kElevatorSafety = 15;//maximum value to check if moving wrist endagers robot
@@ -203,13 +204,13 @@ public final class Constants {
         public static final int kElbowMotorCanID = 11;
         public static final double kElbowUp = 175;// about 90 degrees up
         public static final double kElbowForwards = 260;// stright forwards
-        public static final double kElbowBackwards = 97;// straight back
-        public static final double kElbowP = .008;//.0075
+        public static final double kElbowBackwards = 96;// straight back
+        public static final double kElbowP = .0085;//.0075
         public static final double kElbowI = 0;
         public static final double kElbowD = 0.001;
         public static final double kElbowF = 0.0006;
-        public static final double kElbowMinOutput = -0.25;
-        public static final double kElbowMaxOutput = 0.25;
+        public static final double kElbowMinOutput = -0.3;
+        public static final double kElbowMaxOutput = 0.3;
         public static final double kElbowStowBackwards = 222;//when wrist faces backwards
         public static final double kElbowStowForwards = 218;// when wrist faces forwards
         public static final double kElbowSaftey = 190;//maximum safe value for rotating wrist
@@ -218,15 +219,15 @@ public final class Constants {
       }
 
       public static final class WristConstants{
-        public static final double kWristMaxOutput = 0.25;
-        public static final double kWristP = 0.0033;
+        public static final double kWristMaxOutput = 0.7;
+        public static final double kWristP = 0.007;
         public static final double kWristI = 0;
         public static final double kWristD = 0.002;
         public static final double kWristF = 0.0;
-        public static final double kWristMinOutput = -0.25;
+        public static final double kWristMinOutput = -0.7;
         public static final int kWristMotorCanID = 10;
-        public static final double kWristGround = 85;//back
-        public static final double kWristShelf = 275;//front
+        public static final double kWristGround = 86;//back
+        public static final double kWristShelf = 272;//front
       }
 
       public static final class GlobalConstants{

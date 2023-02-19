@@ -44,20 +44,21 @@ public class SUB_LimeLight extends SubsystemBase {
 
   @Override
   public void periodic() {
-    botpose =  NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getDoubleArray(dv);
-    if(m_finiteStateMachine.getState() == RobotState.SCORING){  
-      if(hasTarget()){
-        m_blinkin.setHasTarget();
-      }
-      else{
-        m_blinkin.setHasNoTarget();
-      }
-    }
-    // telemetry();
+    // botpose =  NetworkTableInstance.getDefault().getTable("limelight").getEntry("botpose").getDoubleArray(dv);
+    botpose =  NetworkTableInstance.getDefault().getTable("limelight").getEntry("botpose_targetspace").getDoubleArray(dv);
+    // if(m_finiteStateMachine.getState() == RobotState.SCORING){  
+    //   if(hasTarget()){
+    //     m_blinkin.setHasTarget();
+    //   }
+    //   else{
+    //     m_blinkin.setHasNoTarget();
+    //   }
+    // }
+    telemetry();
   }
 
   public void telemetry(){
-    SmartDashboard.putNumber("DO YOU SEE ANYTHING ", NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0));
+    SmartDashboard.putBoolean("DO YOU SEE ANYTHING ", hasTarget());
     if(hasTarget()){
       SmartDashboard.putNumber("target ID", getTargetID());
       SmartDashboard.putNumber("target x", getTargetX());
@@ -88,14 +89,17 @@ public class SUB_LimeLight extends SubsystemBase {
   
   public double getTargetX(){
     return Units.metersToInches(-botpose[2]);
+    // return -botpose[2];
   }
 
   public double getTargetY(){
     return Units.metersToInches(botpose[0]);
+    // return botpose[0];
   }
 
   public double getTargetZ(){
     return Units.metersToInches(botpose[1]);
+    // return botpose[1];
   }
 
   public double getTargetPitch(){

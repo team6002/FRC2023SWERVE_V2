@@ -25,11 +25,11 @@ public class CMD_DriveAlignTag extends CommandBase {
     xSpeed = 0;
     ySpeed = 0;
     rotSpeed = 0;
-    x_p = 0.005;
+    // x_p = 0.005;
     x_f = 0.05;
-    y_p = .007;
+    // y_p = .007;
     y_f = 0.05;
-    yaw_p = .0025;
+    // yaw_p = .0025;
     yaw_f = 0.05;
     timer = 0;
     addRequirements(m_drivetrain, m_limeLight);
@@ -69,12 +69,12 @@ public class CMD_DriveAlignTag extends CommandBase {
 
       if(Math.abs(yaw) > 4){
         rotSpeed = (yawError * yaw_p)+ Math.copySign(yaw_f,yaw);
-        m_isFinishedTurn = false;
+        m_isFinishedTurn = true;
       }else{
         m_isFinishedTurn = true;
       }
       
-      m_drivetrain.drive(xSpeed, ySpeed, rotSpeed, false);
+      m_drivetrain.drive(xSpeed, ySpeed, 0, false);
       timer = 0;
       }else{
       timer += .02;
