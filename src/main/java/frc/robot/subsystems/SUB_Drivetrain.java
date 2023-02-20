@@ -191,6 +191,7 @@ public class SUB_Drivetrain extends SubsystemBase {
   }
 
   public void resetOdometryPose2d(Pose2d pose) {
+    zeroAngle();
     m_odometry.resetPosition(m_navx.getRotation2d(), getSwervePosition(), pose);
   }
 

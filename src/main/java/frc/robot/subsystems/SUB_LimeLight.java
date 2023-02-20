@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
@@ -47,7 +48,7 @@ public class SUB_LimeLight extends SubsystemBase {
   @Override
   public void periodic() {
     // botpose =  NetworkTableInstance.getDefault().getTable("limelight").getEntry("botpose").getDoubleArray(dv);
-    botpose = NetworkTableInstance.getDefault().getTable("limelight").getEntry("botpose_targetspace").getDoubleArray(dv);
+    botpose = NetworkTableInstance.getDefault().getTable("limelight").getEntry("targetpose_robotspace").getDoubleArray(dv);
     // if(m_finiteStateMachine.getState() == RobotState.SCORING){  
     //   if(hasTarget()){
     //     m_blinkin.setHasTarget();
@@ -91,19 +92,20 @@ public class SUB_LimeLight extends SubsystemBase {
   public Pose2d getRobotPoseInTargetSpace() {
     System.out.println("botpose[4]= " + botpose[4]);
     System.out.println(Rotation2d.fromDegrees(botpose[4]));
-    Pose2d pose = new Pose2d(botpose[2], -botpose[0], Rotation2d.fromDegrees(botpose[4]));
+    // Pose2d pose = new Pose2d(botpose[2], -botpose[0], Rotation2d.fromDegrees(0));
+    Pose2d pose = new Pose2d(-botpose[2], botpose[0], Rotation2d.fromDegrees(-botpose[4]));
 
     return pose;
   }
 
   public double getTargetX(){
-    return Units.metersToInches(-botpose[2]);
-    // return -botpose[2];
+    // return Units.metersToInches(-botpose[2]);
+    return -botpose[2];
   }
 
   public double getTargetY(){
-    return Units.metersToInches(botpose[0]);
-    // return botpose[0];
+    // return Units.metersToInches(botpose[0]);
+    return botpose[0];
   }
 
   public double getTargetZ(){
@@ -116,7 +118,7 @@ public class SUB_LimeLight extends SubsystemBase {
   }
 
   public double getTargetYaw(){
-    return botpose[4];
+    return -botpose[4];
   }
 
   public double getWantedX(){
