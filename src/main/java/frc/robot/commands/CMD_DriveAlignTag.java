@@ -77,7 +77,7 @@ public class CMD_DriveAlignTag extends CommandBase {
       m_drivetrain.drive(xSpeed, ySpeed, 0, false);
       timer = 0;
       }else{
-      timer += .02;
+        timer += .02;
     }
   }
 

@@ -107,9 +107,12 @@ public class SUB_Drivetrain extends SubsystemBase {
   }
 
   public void telemetry(){
-        SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
-        SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
-        SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
+    SmartDashboard.putNumber("Odometry x", getX());
+    SmartDashboard.putNumber("Odometry y", getY());
+    SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
+        // SmartDashboard.putNumber("Odometry x", Units.metersToInches(getX()));
+        // SmartDashboard.putNumber("Odometry y", Units.metersToInches(getY()));
+        // SmartDashboard.putNumber("Odometry yaw", m_odometry.getPoseMeters().getRotation().getDegrees());
   }
 
   /**
@@ -187,7 +190,10 @@ public class SUB_Drivetrain extends SubsystemBase {
     m_odometry.resetPosition(m_navx.getRotation2d(), getSwervePosition(), p_wantedPose2d);
   }
 
-  
+  public void resetOdometryPose2d(Pose2d pose) {
+    m_odometry.resetPosition(m_navx.getRotation2d(), getSwervePosition(), pose);
+  }
+
   /**
    * Sets the swerve ModuleStates.
    *
