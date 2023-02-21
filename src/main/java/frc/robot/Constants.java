@@ -8,6 +8,8 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
@@ -243,5 +245,21 @@ public final class Constants {
 
         public static final boolean kConeMode = true;
         public static final boolean kCubeMode = false;
+      }
+
+      public static final class AutoAlignConstants{
+        /* X and Y drive constraints (in meters/s) */
+        public static final TrapezoidProfile.Constraints driveConstraints = new TrapezoidProfile.Constraints(1., 0.75);
+        public static final double driveKp = 0.;
+        public static final double driveKi = 0.;
+        public static final double driveKd = 0.;
+
+        /* Turn constraints (in rads/s) */
+        public static final TrapezoidProfile.Constraints turnConstraints = new TrapezoidProfile.Constraints(Math.PI / 8., Math.PI / 8.);
+        public static final double turnKp = 0.;
+        public static final double turnKi = 0.;
+        public static final double turnKd = 0.;
+
+        public static final Pose2d goalPose = new Pose2d(-.8, 0, new Rotation2d());
       }
     }
