@@ -7,6 +7,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.subsystems.SUB_Drivetrain;
 import frc.robot.subsystems.SUB_LimeLight;
@@ -42,12 +44,13 @@ public class CMD_DriveAlignTagPid extends CommandBase {
       Constants.AutoAlignConstants.turnKd,
       Constants.AutoAlignConstants.turnConstraints);
 
-    end = false;
     addRequirements(m_drivetrain, m_limeLight);
   }
 
   @Override
   public void initialize() {
+    end = false;
+
     if (!m_limeLight.hasTarget()) {
       System.out.println("no limelight targets found, bailing");
       end = true;
@@ -58,11 +61,17 @@ public class CMD_DriveAlignTagPid extends CommandBase {
 
     xController.setGoal(Constants.AutoAlignConstants.goalPose.getX());
     yController.setGoal(Constants.AutoAlignConstants.goalPose.getY());
-    turnController.setGoal(Constants.AutoAlignConstants.goalPose.getRotation().getDegrees());
+    turnController.setGoal(m_drivetrain.getAngle() - m_limeLight.getTargetYaw() + Constants.AutoAlignConstants.goalPose.getRotation().getDegrees());
 
-    xController.setTolerance(.1);
-    yController.setTolerance(.1);
-    turnController.setTolerance(5);
+    xController.setTolerance(.05);
+    yController.setTolerance(.05);
+    turnController.setTolerance(2);
+
+    xController.reset(m_limeLight.getTargetX());
+    yController.reset(m_limeLight.getTargetY());
+    turnController.reset(m_drivetrain.getAngle());
+
+    turnController.enableContinuousInput(-180, 180);
   }
 
   @Override
@@ -71,16 +80,38 @@ public class CMD_DriveAlignTagPid extends CommandBase {
       return;
     }
 
+    if (!m_limeLight.hasTarget()) {
+      System.out.println("Target lost, bailing");
+      end = true;
+    }
+
     if (xController.atGoal() && yController.atGoal() && turnController.atGoal()) {
+    // if (xController.atGoal()) {
+      System.out.println("At Goal " + Timer.getFPGATimestamp());
       end = true;
       return;
     }
 
-    xSpeed = xController.calculate(m_limeLight.getTargetX());
-    ySpeed = yController.calculate(m_limeLight.getTargetY());
-    turnSpeed= turnController.calculate(m_limeLight.getTargetYaw());
+    if (xController.atGoal()) {
+      xSpeed = 0.;
+    } else {
+      xSpeed = xController.calculate(m_limeLight.getTargetX());
+    }
+    
+    if (yController.atGoal()) {
+      ySpeed = 0.;
+    } else {
+      ySpeed = yController.calculate(m_limeLight.getTargetY());
+    }
 
-    m_drivetrain.drive(xSpeed, ySpeed, turnSpeed, true);
+    turnSpeed = turnController.calculate(m_drivetrain.getAngle());
+
+    SmartDashboard.putNumber("AutoAlignXSpeed: ", xSpeed);
+    SmartDashboard.putNumber("AutoAlignYSpeed: ", ySpeed);
+    SmartDashboard.putNumber("AutoAlignTurnSpeed: ", turnSpeed);
+    SmartDashboard.putNumber("AutoAlignTurnGoal", turnController.getGoal().position);
+
+    m_drivetrain.drive(xSpeed, ySpeed, -turnSpeed, false);
   }
 
   @Override
@@ -90,6 +121,10 @@ public class CMD_DriveAlignTagPid extends CommandBase {
 
   @Override
   public boolean isFinished() {
+    if (end) {
+      System.out.println("Done! " + Timer.getFPGATimestamp());
+    }
+
     return end;
   }
 }
